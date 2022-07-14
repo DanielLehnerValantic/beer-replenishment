@@ -100,7 +100,7 @@
             "TargetMainView"
           ]
         }, {
-            "pattern": "ObjectView",
+            "pattern": "ObjectView/{Lgtyp}",
             "name": "ObjectView",
             "target": "ObjectView"
         }

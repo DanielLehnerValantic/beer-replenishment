@@ -1,6 +1,9 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.uxap"
-    controllerName="beerreplenishment.controller.MainView"
+    controllerName="beerreplenishment.controller.ObjectView"
+    xmlns:smartList="sap.ui.comp.smartlist"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core"
 	xmlns:m="sap.m"
@@ -15,7 +18,7 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{modelname>TotalQuan}" wrapping="true" />
+					<m:Title text="{Lgtyp}" wrapping="true" />
 				</expandedHeading>
 
 				<snappedHeading>
@@ -62,7 +65,7 @@
 				</l:VerticalLayout>
 
 				<l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
-					<m:ObjectStatus text="In Stock" state="Error" class="sapUiMediumMarginEnd"/>
+					<m:ObjectStatus text="{Lgtyp}" state="Error" class="sapUiMediumMarginEnd"/>
 					<m:ObjectStatus title="Label" text="In Stock" state="Warning"/>
 				</l:HorizontalLayout>
 			</m:FlexBox>
@@ -73,17 +76,89 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<items:Info id="itemsInfo"/>
+							<!-- <items:Info id="itemsInfo"/> -->
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
 
-            <ObjectPageSection titleUppercase="false" title="Produkt">
+            <ObjectPageSection titleUppercase="false" title="Drinks in fridge">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<items:List id="itemsList"/>
+                            <m:Table
+                                id="productTable"
+                                items="{
+                                    path: '/ZEWMIEFSI01STOCKSet',
+                                    sorter: {
+                                        path: 'Lgtyp'
+                                    }
+                                }">
+                                <m:headerToolbar>
+                                    <m:Toolbar>
+                                        <m:SearchField width="25%" search=".onSearchProduct"/>   
+                                    </m:Toolbar>
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="Product" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Description" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Amount" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Test" />
+                                    </m:Column>
+
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem vAlign="Middle" type="Navigation" press=".openDialog">
+                                        <m:cells>
+                                            <m:Text text="{Lgtyp}" wrapping="false" />
+                                            <m:Text text="{Lgnum}" wrapping="false"/>
+                                            <m:Text text="{TotalQuan} {Unit}" />
+                                            <m:Button
+                                                text="Take"
+                                                width="150px"
+                                                press=".onApproveDialogPress" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+
+							<!-- <smartList:SmartList id="ItemsST" entitySet="ZEWMIEFSI01STOCKSet" header="Drinks Overview"
+                                showRowCount="true" showFullScreenButton="true" enableAutoBinding="true"
+                                selectFields="Lgnum,Lgtyp,TotalQuan,Unit">
+                                <smartList:listItemTemplate>
+                                    <m:StandardListItem title="{Lgnum}" info="{TotalQuan} {Unit}"
+                                        description="{Lgtyp}" press=".onPress" type="Navigation" />
+                                </smartList:listItemTemplate>
+                            </smartList:SmartList> -->
+
+
+
+                            <!-- <m:VBox fitContainer="true">
+                                <smartFilterBar:SmartFilterBar id="smartFilterBar"
+                                    entitySet="ZEWMIEFSI01STOCKSet" persistencyKey="SmartFilter_Explored">
+                                    <smartFilterBar:layoutData>
+                                        <m:FlexItemData shrinkFactor="0" />
+                                    </smartFilterBar:layoutData>
+                                </smartFilterBar:SmartFilterBar>
+                                <smartTable:SmartTable entitySet="ZEWMIEFSI01STOCKSet"
+                                    smartFilterId="smartFilterBar" 
+                                    useVariantManagement="false" useTablePersonalisation="true" header="Drinks Overview"
+                                    showRowCount="true" persistencyKey="SmartTableRefApp_Explored"
+                                    enableAutoBinding="true" class="sapUiResponsiveContentPadding"
+                                     paste="onPaste"
+                                    >
+                                    <smartTable:layoutData>
+                                        <m:FlexItemData growFactor="1" baseSize="0%" />
+                                    </smartTable:layoutData>
+                                </smartTable:SmartTable>
+                            </m:VBox> -->
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

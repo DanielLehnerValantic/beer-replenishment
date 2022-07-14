@@ -3,88 +3,48 @@
     controllerName="beerreplenishment.controller.MainView"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:smartList="sap.ui.comp.smartlist"
 	xmlns:semantic="sap.f.semantic">
+    <Table
+		items="{
+			path: '/ZEWMIEFSI01STSet',
+			sorter: {
+				path: 'Lgtyp'
+			}
+		}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Fridges Overview" level="H2"/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Fridge" />
+			</Column>
+			<Column>
+				<Text text="Description" />
+			</Column>
+			<Column>
+				<Text text="Amount" />
+			</Column>
 
-	<semantic:SemanticPage
-		id="page"
-		headerPinnable="false"
-		toggleHeaderOnTitleClick="false"
-		showFooter="false">
-
-		<semantic:titleHeading>
-			<Title text="Selection of Fridge" />
-		</semantic:titleHeading>
-
-		<semantic:headerContent>
-			<IconTabBar
-				id="iconTabBar"
-				select=".onQuickFilter"
-				expandable="false">
-				<content>
-					<Table
-						id="table"
-						busyIndicatorDelay="0"
-						growing="true"
-                        enableBusyIndicator="true"
-						noDataText="No products available"
-						updateFinished=".onUpdateFinished"
-						width="auto"
-						items="{
-							path: '/ZEWMIEFSI01STSet',
-							sorter: {
-								path: 'Lgtyp',
-								descending: false
-							}
-						}">
-					<headerToolbar>
-						<Toolbar>
-							<Title
-								id="tableHeader"
-								text="{mainviewView>/worklistTableTitle}"/>
-							<!-- <SearchField
-								id="searchField"
-								search=".onSearch"
-								width="auto">
-							</SearchField> -->
-						</Toolbar>
-					</headerToolbar>
-
-						<columns>
-							<Column>
-								<Text
-									text="Fridgenumber"/>
-							</Column>
-							<Column
-								demandPopin="false"
-								minScreenWidth="Tablet">
-								<Text text="Description"/>
-							</Column>
-							
-							<Column
-								hAlign="End">
-								<Text text="Amount"/>
-							</Column>
-						</columns>
-                        
-					<items>
-						<ColumnListItem
-							type="Navigation"
-							press=".onPress">
-							<cells>
-								<ObjectIdentifier
-									title="{Lgnum}"/>
-								<Text text="{Lgtyp}"/>
-								
-								<ObjectNumber
-									number="{path: 'TotalQuan'}"
-									unit="{Unit}"
-                                    />
-								</cells>
-							</ColumnListItem>
-						</items>
-					</Table>
-				</content>
-			</IconTabBar>
-		</semantic:headerContent>
-	</semantic:SemanticPage>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" type="Navigation" press=".onPress">
+				<cells>
+					<Text text="{Lgtyp}" wrapping="false" />
+					<Text text="{Lgnum}" wrapping="false"/>
+                    <ObjectNumber number="{path: 'TotalQuan'}" unit="{Unit}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+    <!-- <smartList:SmartList id="ItemsST" entitySet="ZEWMIEFSI01STSet" header="Fridges Overview"
+        showRowCount="true" showFullScreenButton="true" enableAutoBinding="true"
+        selectFields="Lgnum,Lgtyp,TotalQuan,Unit">
+        <smartList:listItemTemplate>
+            <StandardListItem title="{Lgnum}" info="{TotalQuan} {Unit}"
+                description="{Lgtyp}" press=".onPress" type="Navigation" />
+        </smartList:listItemTemplate>
+    </smartList:SmartList> -->
 </mvc:View>
