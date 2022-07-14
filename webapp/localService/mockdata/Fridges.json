@@ -1,0 +1,16 @@
+[
+    {
+      "ProductID": 1,
+      "ProductName": "Fridge kitchen",
+      "UnitsInStock": 39,
+      "UnitsOnOrder": 10,
+      "UnitPrice": 8,
+      "SupplierID": 1,
+      "Discontinued": false,
+      "Supplier": {
+        "__deferred": {
+          "uri": "/sap/opu/odata/sap/ZEWM_EF_SI01_SRV/"
+        }
+      }
+    }
+]

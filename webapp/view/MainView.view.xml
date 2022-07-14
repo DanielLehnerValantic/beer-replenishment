@@ -1,92 +1,90 @@
 
-<mvc:View xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.uxap"
+<mvc:View
     controllerName="beerreplenishment.controller.MainView"
-	xmlns:l="sap.ui.layout"
-    xmlns:core="sap.ui.core"
-	xmlns:m="sap.m"
-    xmlns:items="beerreplenishment.sharedBlocks.items"
-	height="100%">
-    <ObjectPageLayout id="ObjectPageLayout"
-		showTitleInHeaderContent="true"
-		upperCaseAnchorBar="false">
-		<headerTitle>
-			<ObjectPageDynamicHeaderTitle>
-				<expandedHeading>
-					<m:Title text="Object Page Header with Header Container" wrapping="true" />
-				</expandedHeading>
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic">
 
-				<snappedHeading>
-					<m:HBox>
-						<m:VBox>
-						</m:VBox>
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false"
+		showFooter="false">
 
-						<m:VBox>
-							<m:Title text="Object Page Header with Header Container" wrapping="true"/>
-							<m:Label text="Example of an ObjectPage with header facet"/>
-						</m:VBox>
+		<semantic:titleHeading>
+			<Title text="Selection of Fridge" />
+		</semantic:titleHeading>
+
+		<semantic:headerContent>
+			<IconTabBar
+				id="iconTabBar"
+				select=".onQuickFilter"
+				expandable="false">
+				<content>
+					<Table
+						id="table"
+						busyIndicatorDelay="0"
+						growing="true"
+                        enableBusyIndicator="true"
+						noDataText="No products available"
+						updateFinished=".onUpdateFinished"
+						width="auto"
+						items="{
+							path: '/ZEWMIEFSI01STSet',
+							sorter: {
+								path: 'Lgtyp',
+								descending: false
+							}
+						}">
+					<headerToolbar>
+						<Toolbar>
+							<Title
+								id="tableHeader"
+								text="{mainviewView>/worklistTableTitle}"/>
+							<!-- <SearchField
+								id="searchField"
+								search=".onSearch"
+								width="auto">
+							</SearchField> -->
+						</Toolbar>
+					</headerToolbar>
+
+						<columns>
+							<Column>
+								<Text
+									text="Fridgenumber"/>
+							</Column>
+							<Column
+								demandPopin="false"
+								minScreenWidth="Tablet">
+								<Text text="Description"/>
+							</Column>
+							
+							<Column
+								hAlign="End">
+								<Text text="Amount"/>
+							</Column>
+						</columns>
                         
-					</m:HBox>
-				</snappedHeading>
-
-				<expandedContent>
-					<m:Label text="Example of an ObjectPage with header facet"/>
-				</expandedContent>
-
-				<snappedTitleOnMobile>
-					<m:Title text="Object Page Header with Header Container"/>
-				</snappedTitleOnMobile>
-
-				<actions>
-					<m:Button text="Edit" type="Emphasized"/>
-					<m:Button text="Delete"/>
-					<m:Button text="Copy"/>
-					<m:OverflowToolbarButton icon="sap-icon://action" type="Transparent" text="Share" tooltip="action"/>
-				</actions>
-			</ObjectPageDynamicHeaderTitle>
-		</headerTitle>
-
-		<headerContent>
-			<m:FlexBox wrap="Wrap" fitContainer="true">
-				<l:VerticalLayout class="sapUiSmallMarginEnd">
-					<m:ObjectStatus title="User ID" text="12345678"/>
-					<m:ObjectStatus title="Functional Area" text="Developement"/>
-					<m:ObjectStatus title="Cost Center" text="PI DFA GD Programs and Product"/>
-					<m:ObjectStatus title="Email" text="email@address.com"/>
-				</l:VerticalLayout>
-
-				<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-					<m:Text width="200px" text="Hi, I'm Denise. I am passionate about what I do and I'll go the extra mile to make the customer win."/>
-				</l:VerticalLayout>
-
-				<l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
-					<m:ObjectStatus text="In Stock" state="Error" class="sapUiMediumMarginEnd"/>
-					<m:ObjectStatus title="Label" text="In Stock" state="Warning"/>
-				</l:HorizontalLayout>
-			</m:FlexBox>
-		</headerContent>
-
-        <sections>
-			<ObjectPageSection titleUppercase="false" title="TestTitle1">
-				<subSections>
-					<ObjectPageSubSection titleUppercase="false">
-						<blocks>
-							<items:List id="itemsList"/>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-
-            <ObjectPageSection titleUppercase="false" title="TestTitle2">
-				<subSections>
-					<ObjectPageSubSection titleUppercase="false">
-						<blocks>
-							<items:List id="itemsListTest"/>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-		</sections>
-
-	</ObjectPageLayout>
+					<items>
+						<ColumnListItem
+							type="Navigation"
+							press=".onPress">
+							<cells>
+								<ObjectIdentifier
+									title="{Lgnum}"/>
+								<Text text="{Lgtyp}"/>
+								
+								<ObjectNumber
+									number="{path: 'TotalQuan'}"
+									unit="{Unit}"
+                                    />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabBar>
+		</semantic:headerContent>
+	</semantic:SemanticPage>
 </mvc:View>

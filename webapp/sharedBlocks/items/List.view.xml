@@ -1,14 +1,87 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:forms="sap.ui.layout.form" xmlns="sap.m">
-	<forms:SimpleForm editable="false" layout="ColumnLayout">
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:smartList="sap.ui.comp.smartlist"
+    xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc">
+        <semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false"
+		showFooter="false"> 
 
-			<Label text="Evangelize the UI framework across the company" />
-			<Text text="4 days overdue Cascaded"/>
+		<semantic:headerContent>
+			<IconTabBar>
+				<content>
+					<Table
+						id="table"
+						busyIndicatorDelay="0"
+						growing="true"
+                        enableBusyIndicator="true"
+						noDataText="No products available"
+						updateFinished=".onUpdateFinished"
+						width="auto"
+						items="{
+							path: '/ZEWMIEFSI01STOCKSet',
+							sorter: {
+								path: 'Lgnum',
+								descending: false
+							}
+						}">
+					<headerToolbar>
+						<Toolbar>
+							<Title
+								id="tableHeader"
+								text="{mainviewView>/worklistTableTitle}"/>
+							<ToolbarSpacer/>
+							<SearchField
+								id="searchField"
+								search=".onSearch"
+								width="auto">
+							</SearchField>
+						</Toolbar>
+					</headerToolbar>
 
-			<Label text="Get trained in development management direction" />
-			<Text text="Due Nov 21"/>
-
-			<Label text="Mentor junior developers" />
-			<Text text="Due Dec 31 Cascaded"/>
-
-	</forms:SimpleForm>
+						<columns>
+							<Column id="nameColumn">
+								<Text
+									id="nameColumnTitle"
+									text="{i18n>TableNameColumnTitle}"/>
+							</Column>
+							<Column
+								id="supplierNameColumn"
+								demandPopin="false"
+								minScreenWidth="Tablet">
+								<Text text="{i18n>TableSupplierColumnTitle}"/>
+							</Column>
+							<Column
+								id="unitPriceColumn"
+								hAlign="End"
+								demandPopin="true"
+								minScreenWidth="Tablet">
+								<Text text="Amount"/>
+							</Column>
+						</columns>
+					<items>
+						<ColumnListItem
+							type="Navigation"
+							press=".onPress">
+							<cells>
+								<ObjectIdentifier
+									title="{Matid}"/>
+								<Text text="{TotalQuan}"/>
+								<ObjectNumber
+									number="{
+										path: 'TotalQuan'}"
+									unit="{Unit}"
+                                    />
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabBar>
+		</semantic:headerContent>
+	</semantic:SemanticPage>
 </mvc:View>
+

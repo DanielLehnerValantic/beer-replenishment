@@ -99,6 +99,10 @@
           "target": [
             "TargetMainView"
           ]
+        }, {
+            "pattern": "ObjectView",
+            "name": "ObjectView",
+            "target": "ObjectView"
         }
       ],
       "targets": {
@@ -108,6 +112,10 @@
           "clearControlAggregation": false,
           "viewId": "MainView",
           "viewName": "MainView"
+        },
+        "ObjectView": {
+            "viewType": "XML",
+            "viewName": "ObjectView"
         }
       }
     },
