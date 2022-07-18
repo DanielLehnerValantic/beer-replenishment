@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<!-- <ResponsivePopover
+		id="myPopover"
+		title="{Name}"
+		class="sapUiContentPadding"
+		placement="Bottom" >
+		<beginButton>
+			<Button text="submit" press="handleCloseButton" />
+		</beginButton>
+		<endButton>
+			<Button text="cancel" press="handleCloseButton" />
+		</endButton>
+		<content>
+			<Image src="{ProductPicUrl}" width="15em" />
+		</content>
+	</ResponsivePopover> -->
+    <Dialog
+      id="helloDialog"
+      title="Hello">
+   </Dialog>
+</core:FragmentDefinition>

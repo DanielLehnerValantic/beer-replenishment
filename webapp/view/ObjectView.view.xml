@@ -8,6 +8,7 @@
     xmlns:core="sap.ui.core"
 	xmlns:m="sap.m"
     xmlns:items="beerreplenishment.sharedBlocks.items"
+    xmlns:fragment="beerreplenishment.view.fragment"
 	height="100%">
     <ObjectPageLayout id="ObjectPageLayout"
 		showTitleInHeaderContent="true"
@@ -77,6 +78,7 @@
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
 							<!-- <items:Info id="itemsInfo"/> -->
+                            <!-- <fragment:List id="itemsList"/> -->
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -107,10 +109,13 @@
                                         <m:Text text="Description" />
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Amount" />
+                                        <m:Text text="Available Quantity" />
                                     </m:Column>
                                     <m:Column>
-                                        <m:Text text="Test" />
+                                        <m:Text text="Selected Quantity" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Select" />
                                     </m:Column>
 
                                 </m:columns>
@@ -119,11 +124,25 @@
                                         <m:cells>
                                             <m:Text text="{Lgtyp}" wrapping="false" />
                                             <m:Text text="{Lgnum}" wrapping="false"/>
-                                            <m:Text text="{TotalQuan} {Unit}" />
+                                            <!-- <m:Text text="{TotalQuan} {Unit}" /> -->
+                                            <m:ObjectNumber
+                                                number="{
+                                                    path: 'TotalQuan',
+                                                    formatter: '.formatter.numberUnit'}"
+                                                unit="{Unit}"
+                                                />
+                                            <m:Text text="Selected Quantity" wrapping="false"/>
+                                            
+                                            <!-- <m:Button
+                                                text="Take beer button"
+                                                press=".onApproveDialogPress" /> -->
+                                                <!-- <m:Button
+                                                    text="Take beer button"
+                                                    press=".onPressButtonDialog" /> -->
                                             <m:Button
-                                                text="Take"
-                                                width="150px"
-                                                press=".onApproveDialogPress" />
+                                                id="takeBeerButton"
+                                                text="Take a Beer"
+                                                press=".onOpenDialog"/>
                                         </m:cells>
                                     </m:ColumnListItem>
                                 </m:items>
