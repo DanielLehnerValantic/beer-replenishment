@@ -17,7 +17,29 @@
 		</content>
 	</ResponsivePopover> -->
     <Dialog
-      id="helloDialog"
-      title="Hello">
+        id="takeDialog"
+        title="Name of Beer">
+        <content>
+            <VBox class="sapUiTinyMargin" justifyContent="SpaceBetween" alignItems="Center" alignContent="Center">
+                <!-- <Panel class="sapUiResponsiveMargin" headerText="How much beer do you want to withdraw?">
+                </Panel> -->
+                <Title text="How much beer do you want to withdraw?" />
+                <FlexBox direction="Column" alignItems="Center">
+                    <StepInput value="1" change="onChangeStepInput" textAlign="Center" width="120px" />
+                    <Text text="Available: 44" />
+                </FlexBox>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button
+                text="Submit"
+                type="Emphasized"
+                press=".onSubmitDialog" />
+        </beginButton>
+        <endButton>
+            <Button
+				text="Cancel"
+				press=".onCancelDialog" />
+        </endButton>
    </Dialog>
 </core:FragmentDefinition>

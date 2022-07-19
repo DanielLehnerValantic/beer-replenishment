@@ -34,7 +34,7 @@
 				<cells>
 					<Text text="{Lgtyp}" wrapping="false" />
 					<Text text="{Lgnum}" wrapping="false"/>
-                    <ObjectNumber number="{path: 'TotalQuan'}" unit="{Unit}" />
+                    <ObjectNumber number="{path: 'TotalQuan', formatter: '.formatter.numberUnit'}" unit="{Unit}" />
 				</cells>
 			</ColumnListItem>
 		</items>

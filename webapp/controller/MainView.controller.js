@@ -1,14 +1,16 @@
 sap.ui.define([
-    "./BaseController"
+    "./BaseController",
+    "beerreplenishment/model/formatter",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (BaseController) {
+    function (BaseController, formatter) {
         "use strict";
 
         return BaseController.extend("beerreplenishment.controller.MainView", {
 
+            formatter: formatter,
 
             onInit: function() {
     
