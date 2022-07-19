@@ -19,7 +19,7 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{Lgtyp}" wrapping="true" />
+					<m:Title text="Fridge: {view>/item/Lgtyp}" wrapping="true" />
 				</expandedHeading>
 
 				<snappedHeading>
@@ -29,15 +29,15 @@
 						</m:VBox>
 
 						<m:VBox>
-							<m:Title text="Overview of {Lgytp}" wrapping="true"/>
-							<m:Label text="Example of an ObjectPage with header facet"/>
+							<m:Title text="Fridge: {view>/item/Lgtyp}" wrapping="true"/>
+							<m:Label text="Lorem ipsum description of fridge"/>
 						</m:VBox>
                         
 					</m:HBox>
 				</snappedHeading>
 
 				<expandedContent>
-					<m:Label text="Example of an ObjectPage with header facet"/>
+					<m:Label text="Lorem ipsum description of fridge"/>
 				</expandedContent>
 
 				<snappedTitleOnMobile>
@@ -57,7 +57,7 @@
 			<m:FlexBox wrap="Wrap" fitContainer="true">
                 <!-- <m:Avatar class="sapUiMediumMarginEnd sapUiSmallMarginBottom" displayShape="Square" initials="HF" displaySize="L"/> -->
 				<m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
-					<m:Label text="Personal Information"/>
+					<m:Label text="Capacity"/>
 					<m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information"/>
 				</m:VBox>
 
@@ -66,8 +66,7 @@
 				</l:VerticalLayout>
 
 				<l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
-					<m:ObjectStatus text="{Lgtyp}" state="Error" class="sapUiMediumMarginEnd"/>
-					<m:ObjectStatus title="Label" text="In Stock" state="Warning"/>
+                    <m:ObjectStatus title="Tegernseer hell" text="In Stock {path:'view>/item/TotalQuan', formatter: '.formatter.numberUnit'}" state="Warning"/>
 				</l:HorizontalLayout>
 			</m:FlexBox>
 		</headerContent>

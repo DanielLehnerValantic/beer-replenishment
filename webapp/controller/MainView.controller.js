@@ -1,11 +1,12 @@
 sap.ui.define([
     "./BaseController",
     "beerreplenishment/model/formatter",
+    "sap/ui/model/json/JSONModel"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (BaseController, formatter) {
+    function (BaseController, formatter, JSONModel) {
         "use strict";
 
         return BaseController.extend("beerreplenishment.controller.MainView", {
@@ -14,33 +15,31 @@ sap.ui.define([
 
             onInit: function() {
     
-
             },
 
             onPress: function(oEvent){
-
-                var oItem, oCtx;
-                oItem = oEvent.getSource();
-                oCtx = oItem.getBindingContext();
-
-                var test = oCtx.getProperty("sPath");
-                var oPath = oEvent.getSource().getBindingContext().getPath();
+                // selected object data
                 var selectedObject = oEvent.getSource().getBindingContext().getObject();
-                var obj = oCtx.getProperty(oPath);
 
-                var selectedItem = selectedObject.Lgtyp;
-                var selectedItem1 = selectedObject.TotalQuan;
+                // creating new data object with selected data
+                var oData = {
+                    item : {
+                       Lgtyp: selectedObject.Lgtyp,
+                       Lgnum: selectedObject.Lgnum,
+                       TotalQuan: selectedObject.TotalQuan,
+                       Unit: selectedObject.Unit
+                    }
+                 };
 
-                console.log(selectedItem);
+                // creating new model with selected data
+                var oModel = new JSONModel(oData);
 
-                console.log("selectedObject");
-                console.log(selectedObject);
+                // making the model available for other views
+                sap.ui.getCore().setModel(oModel);
 
                 this.getRouter().navTo("ObjectView", {
-                    "Lgtyp" : selectedItem
+                    "Lgtyp": selectedObject.Lgtyp
                 });
-
             }
-            
         });
     });
