@@ -3,27 +3,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Fragment",
-    "beerreplenishment/model/formatter",
-	"sap/m/Dialog",
-	"sap/m/Button",
-	"sap/m/library",
-	"sap/m/List",
-	"sap/m/StandardListItem",
-	"sap/m/Text",
-    "sap/m/StepInput",
-    "sap/ui/layout/HorizontalLayout",
-	"sap/ui/layout/VerticalLayout",
-    "sap/m/Label",
-    "sap/m/VBox",
-    "sap/m/HBox"
-], function (BaseController, Filter, FilterOperator, Fragment, formatter, Dialog, Button, mobileLibrary, List, StandardListItem, Text, StepInput, HorizontalLayout, VerticalLayout, Label, VBox, HBox) {
+    "beerreplenishment/model/formatter"
+], function (BaseController, Filter, FilterOperator, Fragment, formatter) {
 	"use strict";
-
-    // shortcut for sap.m.ButtonType
-	var ButtonType = mobileLibrary.ButtonType;
-
-	// shortcut for sap.m.DialogType
-	var DialogType = mobileLibrary.DialogType;
 
 	return BaseController.extend("beerreplenishment.controller.ObjectView", {
 
@@ -33,9 +15,9 @@ sap.ui.define([
             this.getRouter().getRoute("ObjectView").attachMatched(this.onRouteMatched, this);
 		},
 
-        onRouteMatched: function(oEvent) {
+        onRouteMatched: function(e) {
             // get selected item
-            var oArguments = oEvent.getParameter("arguments");
+            var oArguments = e.getParameter("arguments");
             var Lgtyp = oArguments.Lgtyp;
 
             // filter for selected item "Lgtyp"
@@ -52,14 +34,14 @@ sap.ui.define([
 
             // get selected model
             var oModel = sap.ui.getCore().getModel(oModel);
-            var oData = oModel.getData();
+            // var oData = oModel.getData();
             this.getView().setModel(oModel, "view");
 
             // var Lgtyp = oData.item.Lgtyp;
 
         },
 
-        onOpenDialog: function(oEvent) {
+        onOpenDialog: function() {
             Fragment.load({
                 id: this.getView().getId(),
                 name: "beerreplenishment.view.fragment.Popover",
@@ -69,8 +51,9 @@ sap.ui.define([
             });
         },
 
-        onCancelDialog : function () {
-			this.byId("takeDialog").close();
+        onCancelDialog: function(e) {
+			// this.byId("takeDialog").close();
+            e.getSource().getParent().destroy();
 		}
 
 	});

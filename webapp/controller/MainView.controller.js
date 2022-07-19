@@ -20,6 +20,7 @@ sap.ui.define([
             onPress: function(oEvent){
                 // selected object data
                 var selectedObject = oEvent.getSource().getBindingContext().getObject();
+                console.log(selectedObject);
 
                 // creating new data object with selected data
                 var oData = {
@@ -27,9 +28,12 @@ sap.ui.define([
                        Lgtyp: selectedObject.Lgtyp,
                        Lgnum: selectedObject.Lgnum,
                        TotalQuan: selectedObject.TotalQuan,
-                       Unit: selectedObject.Unit
+                       Unit: selectedObject.Unit,
+                       Matid: selectedObject.Matid
                     }
                  };
+
+                 console.log(oData);
 
                 // creating new model with selected data
                 var oModel = new JSONModel(oData);
