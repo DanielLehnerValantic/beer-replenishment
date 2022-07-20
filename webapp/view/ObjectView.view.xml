@@ -51,7 +51,7 @@
                         <m:ObjectStatus title="Tegernseer hell"/>
                         <m:ObjectStatus title="Augustiner"/>
                         <!-- <m:Text text="Fridge {view>/item/Lgtyp} in the kitchen." class="sapUiMediumMarginTop" /> -->
-                        <m:Label text="Capacity" class="sapUiMediumMarginTop"/>
+                        <m:Label text="Capacity {view>/item/Lgtyp}" class="sapUiMediumMarginTop"/>
 					    <m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" />
                     </l:VerticalLayout>
 
@@ -63,7 +63,7 @@
 
                     <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
                         <m:ObjectStatus text="22" state="Success"/>
-                        <m:ObjectStatus text="{path:'view>/item/TotalQuan', formatter: '.formatter.numberUnit'}" state="Warning"/>
+                        <m:ObjectStatus text="{path: 'view>/item/TotalQuan', formatter: '.formatter.numberUnit'}" state="Warning"/>
                         <m:ObjectStatus text="0" state="Error"/>
                     </l:VerticalLayout>
                 </l:HorizontalLayout>
@@ -153,13 +153,13 @@
 				</subSections>
 			</ObjectPageSection>
 		</sections>
-        <!-- <footer>
+        <footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
 				<m:Button type="Accept" text="Save"/>
 				<m:Button type="Reject" text="Cancel"/>
 			</m:OverflowToolbar>
-		</footer> -->
+		</footer>
 
 	</ObjectPageLayout>
 </mvc:View>

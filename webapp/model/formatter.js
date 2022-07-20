@@ -21,6 +21,14 @@ sap.ui.define([
 			return parseFloat(sValue).toFixed(0);
 		},
 
+        numberUnitInt : function (sValue) {
+			if (!sValue) {
+				return "";
+			}
+			return parseFloat(sValue);
+		},
+
+
 		/**
 		 * Defines a value state based on the stock level
 		 *

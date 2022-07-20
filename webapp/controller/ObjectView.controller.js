@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Fragment",
-    "beerreplenishment/model/formatter"
-], function (BaseController, Filter, FilterOperator, Fragment, formatter) {
+    "beerreplenishment/model/formatter",
+    "sap/ui/model/json/JSONModel"
+], function (BaseController, Filter, FilterOperator, Fragment, formatter, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("beerreplenishment.controller.ObjectView", {
@@ -37,9 +38,11 @@ sap.ui.define([
             // var oData = oModel.getData();
             this.getView().setModel(oModel, "view");
 
+            // var oModel2 = 
+
         },
 
-        onOpenDialog: function() {
+        onOpenDialog: function(e) {
             Fragment.load({
                 id: this.getView().getId(),
                 name: "beerreplenishment.view.fragment.Popover",
@@ -49,20 +52,26 @@ sap.ui.define([
             });
         },
 
+        onAfterRendering: function(e) {
+
+        },
+
         onCancelDialog: function(e) {
 			// this.byId("takeDialog").close();
             e.getSource().getParent().destroy();
 		},
 
-        onSubmitDialog: function(e) {
-            console.log(this);
-            // stepInputDialog
-        },
-
         onChangeStepInput: function(e) {
             var value = this.getView().byId("stepInputDialog").getValue();
             console.log(value);
+        },
+
+        onSubmitDialog: function(e) {
+            console.log(this);
+            // stepInputDialog
         }
+
+        
 
 	});
 

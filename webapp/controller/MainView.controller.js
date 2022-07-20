@@ -17,9 +17,9 @@ sap.ui.define([
     
             },
 
-            onPress: function(oEvent){
-                // selected object data
-                var selectedObject = oEvent.getSource().getBindingContext().getObject();
+            onPress: function(e){
+                // selected item data
+                var selectedObject = e.getSource().getBindingContext().getObject();
                 console.log(selectedObject);
 
                 // creating new data object with selected data
@@ -28,8 +28,7 @@ sap.ui.define([
                        Lgtyp: selectedObject.Lgtyp,
                        Lgnum: selectedObject.Lgnum,
                        TotalQuan: selectedObject.TotalQuan,
-                       Unit: selectedObject.Unit,
-                       Matid: selectedObject.Matid
+                       Unit: selectedObject.Unit
                     }
                  };
 
