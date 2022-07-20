@@ -37,8 +37,6 @@ sap.ui.define([
             // var oData = oModel.getData();
             this.getView().setModel(oModel, "view");
 
-            // var Lgtyp = oData.item.Lgtyp;
-
         },
 
         onOpenDialog: function() {
@@ -54,7 +52,17 @@ sap.ui.define([
         onCancelDialog: function(e) {
 			// this.byId("takeDialog").close();
             e.getSource().getParent().destroy();
-		}
+		},
+
+        onSubmitDialog: function(e) {
+            console.log(this);
+            // stepInputDialog
+        },
+
+        onChangeStepInput: function(e) {
+            var value = this.getView().byId("stepInputDialog").getValue();
+            console.log(value);
+        }
 
 	});
 

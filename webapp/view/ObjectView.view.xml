@@ -7,7 +7,6 @@
 	xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core"
 	xmlns:m="sap.m"
-    xmlns:items="beerreplenishment.sharedBlocks.items"
     xmlns:fragment="beerreplenishment.view.fragment"
 	height="100%">
     <ObjectPageLayout id="ObjectPageLayout"
@@ -33,7 +32,7 @@
 				</snappedHeading>
 
 				<expandedContent>
-					<m:Label text="Lorem ipsum description of fridge"/>
+					<m:Label text="Lorem ipsum description of fridge. Lorem ipsum description of fridge. "/>
 				</expandedContent>
 
 				<snappedTitleOnMobile>
@@ -51,13 +50,17 @@
                         <m:ObjectStatus title="Beer"/>
                         <m:ObjectStatus title="Tegernseer hell"/>
                         <m:ObjectStatus title="Augustiner"/>
-                        <m:Text text="Fridge {view>/item/Lgtyp} in the kitchen." class="sapUiMediumMarginTop" />
-                    </l:VerticalLayout> 
+                        <!-- <m:Text text="Fridge {view>/item/Lgtyp} in the kitchen." class="sapUiMediumMarginTop" /> -->
+                        <m:Label text="Capacity" class="sapUiMediumMarginTop"/>
+					    <m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" />
+                    </l:VerticalLayout>
+
                     <l:VerticalLayout>
                         <m:ObjectStatus text="In Stock:" state="Success"/>
                         <m:ObjectStatus text="In Stock:" state="Warning"/>
                         <m:ObjectStatus text="Out of stock:" state="Error"/>
                     </l:VerticalLayout>
+
                     <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
                         <m:ObjectStatus text="22" state="Success"/>
                         <m:ObjectStatus text="{path:'view>/item/TotalQuan', formatter: '.formatter.numberUnit'}" state="Warning"/>
@@ -67,13 +70,13 @@
                 
 			</m:FlexBox>
 
-            <m:FlexBox wrap="Wrap" fitContainer="true">
+            <!-- <m:FlexBox wrap="Wrap" fitContainer="true">
 
                 <m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
 					<m:Label text="Capacity"/>
 					<m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" />
 				</m:VBox>
-			</m:FlexBox>
+			</m:FlexBox> -->
 		</headerContent>
 
         <sections>
@@ -150,13 +153,13 @@
 				</subSections>
 			</ObjectPageSection>
 		</sections>
-        <footer>
+        <!-- <footer>
 			<m:OverflowToolbar>
 				<m:ToolbarSpacer/>
 				<m:Button type="Accept" text="Save"/>
 				<m:Button type="Reject" text="Cancel"/>
 			</m:OverflowToolbar>
-		</footer>
+		</footer> -->
 
 	</ObjectPageLayout>
 </mvc:View>
