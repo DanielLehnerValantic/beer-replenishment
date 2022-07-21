@@ -31,6 +31,8 @@ sap.ui.define([
             // filter binding
             var oList = this.getView().byId("productTable");
             var oBinding = oList.getBinding("items");
+
+            // activate filter for selected item
             oBinding.filter(aFilter);
 
             // get selected model
@@ -38,11 +40,49 @@ sap.ui.define([
             // var oData = oModel.getData();
             this.getView().setModel(oModel, "view");
 
-            // var oModel2 = 
 
         },
 
         onOpenDialog: function(e) {
+            // selected item data
+            var selectedObject = e.getSource().getBindingContext().getObject();
+            console.log(selectedObject);
+
+            // test
+            // var oData = this.getModel("selectedItem");
+            // oData.setData({
+            //     item: {
+            //         Lgtyp: selectedObject.Lgtyp,
+            //         Lgnum: selectedObject.Lgnum,
+            //         TotalQuan: selectedObject.TotalQuan,
+            //         Unit: selectedObject.Unit,
+            //         Matid: selectedObject.Matid,
+            //         Mandt: selectedObject.Mandt,
+            //         selectedValue: 0
+            //     }
+            // });
+
+            var oData = {
+                item: {
+                    Lgtyp: selectedObject.Lgtyp,
+                    Lgnum: selectedObject.Lgnum,
+                    TotalQuan: selectedObject.TotalQuan,
+                    Unit: selectedObject.Unit,
+                    Matid: selectedObject.Matid,
+                    Mandt: selectedObject.Mandt,
+                    selectedValue: 0
+                }
+            };
+
+            console.log(oData);
+            // creating new model with selected data
+            var oModel = new JSONModel(oData);
+
+            // making the model available for other views
+            sap.ui.getCore().setModel(oModel);
+            this.getView().setModel(oModel, "objectView");
+            
+            // load and open fragment
             Fragment.load({
                 id: this.getView().getId(),
                 name: "beerreplenishment.view.fragment.Popover",
@@ -62,13 +102,47 @@ sap.ui.define([
 		},
 
         onChangeStepInput: function(e) {
-            var value = this.getView().byId("stepInputDialog").getValue();
-            console.log(value);
+            // var valueStepInput = this.getView().byId("stepInputDialog").getValue();
+
+            // var selectedValModel = this.getModel("selectedValue");
+            // selectedValModel.setData({
+            //     selectedValue: valueStepInput
+            // });
         },
 
         onSubmitDialog: function(e) {
-            console.log(this);
-            // stepInputDialog
+            // get Dialog Stepinput value
+            var valueStepInput = this.getView().byId("stepInputDialog").getValue();
+            // this.getView().getModel().getData();
+
+            var oModel = this.getView().getModel("objectView");
+            oModel.setProperty("/item/selectedValue", valueStepInput);
+            console.log(oModel);
+
+            // var oTable = this.getView().byId("productTable"),
+                // oModel = oTable.getModel();
+                
+            // console.log(oTable);
+            // console.log(oModel);
+            // console.log(aItems);
+
+            // insert Stepinput value into data model
+            // var selectedValModel = this.getModel("selectedValue");
+            // selectedValModel.setData({
+            //     selectedValue: valueStepInput
+            // });
+
+            // var createSelectedItemModel = this.getModel("selectedItem");
+            // console.log(createSelectedItemModel);
+            // oModel.setData({
+            //     item1: {
+            //         selectedValue: valueStepInput
+            //     }
+            // });
+
+            // console.log(createSelectedItemModel);
+            
+            e.getSource().getParent().destroy();
         }
 
         

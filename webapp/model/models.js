@@ -18,6 +18,21 @@ sap.ui.define([
                 var oModel = new JSONModel(Device);
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
-        }
+            },
+            createSelectedValModel: function() {
+                return new JSONModel({ selectedValue: 0});
+            },
+            createSelectedItemModel: function() {
+                return new JSONModel({
+                    item: {
+                        Lgtyp: "",
+                        Lgnum: "",
+                        TotalQuan: "",
+                        Unit: "",
+                        Matid: "",
+                        selectedValue: "0"
+                    }
+                });
+            }
     };
 });

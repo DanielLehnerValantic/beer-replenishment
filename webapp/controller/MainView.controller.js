@@ -22,17 +22,22 @@ sap.ui.define([
                 var selectedObject = e.getSource().getBindingContext().getObject();
                 console.log(selectedObject);
 
+                var capacity = 80;
+                var capacityVal = (selectedObject.TotalQuan * 100) / capacity;
+
                 // creating new data object with selected data
                 var oData = {
                     item : {
-                       Lgtyp: selectedObject.Lgtyp,
-                       Lgnum: selectedObject.Lgnum,
-                       TotalQuan: selectedObject.TotalQuan,
-                       Unit: selectedObject.Unit
+                        Lgtyp: selectedObject.Lgtyp,
+                        Lgnum: selectedObject.Lgnum,
+                        TotalQuan: selectedObject.TotalQuan,
+                        Unit: selectedObject.Unit,
+                        Capacity: capacity,
+                        CapacityVal: capacityVal
                     }
-                 };
+                };
 
-                 console.log(oData);
+                console.log(oData);
 
                 // creating new model with selected data
                 var oModel = new JSONModel(oData);

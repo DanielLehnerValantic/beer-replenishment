@@ -52,7 +52,14 @@
                         <m:ObjectStatus title="Augustiner"/>
                         <!-- <m:Text text="Fridge {view>/item/Lgtyp} in the kitchen." class="sapUiMediumMarginTop" /> -->
                         <m:Label text="Capacity {view>/item/Lgtyp}" class="sapUiMediumMarginTop"/>
-					    <m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" />
+                        <m:Text text="{path: 'view>/item/TotalQuan', formatter: '.formatter.numberUnitInt'}/{path: 'view>/item/Capacity', formatter: '.formatter.numberUnitInt'}"/>
+					    <!-- <m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" /> -->
+                        <m:ProgressIndicator
+                            displayValue="{path: 'view>/item/CapacityVal', formatter: '.formatter.numberUnitInt'}%"
+                            percentValue="{path: 'view>/item/CapacityVal', formatter: '.formatter.numberUnitInt'}" 
+                            state="Warning"
+                            width="125px"
+                        />
                     </l:VerticalLayout>
 
                     <l:VerticalLayout>
@@ -62,7 +69,7 @@
                     </l:VerticalLayout>
 
                     <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-                        <m:ObjectStatus text="22" state="Success"/>
+                        <m:ObjectStatus text="0" state="Success"/>
                         <m:ObjectStatus text="{path: 'view>/item/TotalQuan', formatter: '.formatter.numberUnit'}" state="Warning"/>
                         <m:ObjectStatus text="0" state="Error"/>
                     </l:VerticalLayout>
@@ -138,8 +145,17 @@
                                                     path: 'TotalQuan',
                                                     formatter: '.formatter.numberUnit'}"
                                                 unit="{Unit}"
-                                                />
-                                            <m:Text text="0" wrapping="false"/>
+                                            />
+                                            <m:ObjectNumber
+                                                id="selectedValueTable"
+                                                number="{objectView>/item/selectedValue}"
+                                                unit="{Unit}"
+                                            />
+                                            <!-- <m:ObjectNumber
+                                                id="selectedValueTable"
+                                                number="{selectedItem>/item/selectedValue}"
+                                                unit="{Unit}"
+                                            /> -->
                                             <m:Button
                                                 id="takeBeerButton"
                                                 text="Take a Beer"
