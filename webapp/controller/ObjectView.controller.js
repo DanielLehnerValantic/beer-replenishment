@@ -40,7 +40,6 @@ sap.ui.define([
             // var oData = oModel.getData();
             this.getView().setModel(oModel, "view");
 
-
         },
 
         onOpenDialog: function(e) {
