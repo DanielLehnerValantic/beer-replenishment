@@ -55,7 +55,8 @@
         "sap.ui.comp": {},
         "sap.ui.generic.app": {},
         "sap.ui.table": {},
-        "sap.ushell": {}
+        "sap.ushell": {},
+        "sap.ui.layout": {}
       }
     },
     "contentDensities": {
@@ -99,6 +100,10 @@
           "target": [
             "TargetMainView"
           ]
+        }, {
+            "pattern": "ObjectView/{Lgtyp}",
+            "name": "ObjectView",
+            "target": "ObjectView"
         }
       ],
       "targets": {
@@ -108,6 +113,10 @@
           "clearControlAggregation": false,
           "viewId": "MainView",
           "viewName": "MainView"
+        },
+        "ObjectView": {
+            "viewType": "XML",
+            "viewName": "ObjectView"
         }
       }
     },
