@@ -1,10 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
-    <edmx:DataServices m:DataServiceVersion="2.0">
-        <Schema Namespace="Z_EWM_REPL_BEER_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <EntityContainer Name="Z_EWM_REPL_BEER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"/>
-            <atom:link rel="self" href="http://val-vs1.movento.mannheim:8001/sap/opu/odata/sap/Z_EWM_REPL_BEER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-            <atom:link rel="latest-version" href="http://val-vs1.movento.mannheim:8001/sap/opu/odata/sap/Z_EWM_REPL_BEER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-        </Schema>
-    </edmx:DataServices>
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+   <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://val-vs1.movento.mannheim:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+      <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
+   </edmx:Reference>
+   <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://val-vs1.movento.mannheim:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+      <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1" />
+   </edmx:Reference>
+   <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://val-vs1.movento.mannheim:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+      <edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1" />
+   </edmx:Reference>
+   <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://val-vs1.movento.mannheim:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+      <edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1" />
+   </edmx:Reference>
+   <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="http://val-vs1.movento.mannheim:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+      <edmx:Include Alias="PersonalData" Namespace="com.sap.vocabularies.PersonalData.v1" />
+   </edmx:Reference>
+   <edmx:DataServices m:DataServiceVersion="2.0">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xml:lang="de" Namespace="ZEWM_EF_SI01_SRV" sap:schema-version="1">
+         <EntityType sap:content-version="1" Name="ZEWMIEFSI01STOCK">
+            <Key>
+               <PropertyRef Name="Lgnum" />
+               <PropertyRef Name="Lgtyp" />
+            </Key>
+            <Property Name="Mandt" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Mandant" sap:unicode="false" MaxLength="3" Nullable="false" Type="Edm.String" />
+            <Property Name="Lgnum" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Lagernummer" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+            <Property Name="Lgtyp" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Lagertyp" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+            <Property Name="Matid" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Produkt" sap:unicode="false" Nullable="false" Type="Edm.Binary" />
+            <Property Name="TotalQuan" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.Decimal" Scale="14" Precision="31" />
+            <Property Name="Unit" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Basiseinheit" sap:unicode="false" MaxLength="3" Nullable="false" Type="Edm.String" sap:semantics="unit-of-measure" />
+         </EntityType>
+         <EntityType sap:content-version="1" Name="ZEWMIEFSI01ST">
+            <Key>
+               <PropertyRef Name="Lgtyp" />
+            </Key>
+            <Property Name="Mandt" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Mandant" sap:unicode="false" MaxLength="3" Nullable="false" Type="Edm.String" />
+            <Property Name="Lgnum" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Lagernummer" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+            <Property Name="Lgtyp" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Lagertyp" sap:unicode="false" MaxLength="4" Nullable="false" Type="Edm.String" />
+            <Property Name="TotalQuan" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.Decimal" Scale="14" Precision="31" />
+            <Property Name="Unit" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Basiseinheit" sap:unicode="false" MaxLength="3" Nullable="false" Type="Edm.String" sap:semantics="unit-of-measure" />
+         </EntityType>
+         <EntityType sap:content-version="1" Name="ZEWMIEFSI01_AQUAType">
+            <Key>
+               <PropertyRef Name="GuidParent" />
+               <PropertyRef Name="GuidStock" />
+            </Key>
+            <Property Name="GuidParent" sap:label="Parent" Nullable="false" Type="Edm.Guid" sap:quickinfo="GUID parent" />
+            <Property Name="GuidStock" sap:label="GUID Stock" Nullable="false" Type="Edm.Guid" sap:quickinfo="GUID Bestandsposition" />
+            <Property Name="Lgnum" sap:label="Lagernummer" MaxLength="4" Type="Edm.String" sap:quickinfo="Lagernummer/Lagerkomplex" sap:display-format="UpperCase" />
+            <Property Name="Lgtyp" sap:label="Lagertyp" MaxLength="4" Type="Edm.String" sap:display-format="UpperCase" />
+            <Property Name="Lgpla" sap:label="Lagerplatz" MaxLength="18" Type="Edm.String" sap:display-format="UpperCase" />
+            <Property Name="Rsrc" sap:label="Ressource" MaxLength="18" Type="Edm.String" sap:quickinfo="Ressource (Transportmittel oder Benutzer)" />
+            <Property Name="Huident" sap:label="Handling Unit" MaxLength="20" Type="Edm.String" sap:quickinfo="Handling-Unit-Identifikation" sap:display-format="UpperCase" />
+            <Property Name="TuNum" sap:label="Interne TE-Nr" MaxLength="18" Type="Edm.String" sap:quickinfo="Interne Nummer der Transporteinheit" sap:display-format="UpperCase" />
+            <Property Name="Flgmove" sap:label="offener HU LB" Type="Edm.Boolean" sap:quickinfo="Kennzeichen: Handling Unit ist in Bewegung (offener HU-LB)" sap:display-format="UpperCase" />
+            <Property Name="Matid" sap:label="Produkt" Type="Edm.Guid" />
+            <Property Name="Batchid" sap:label="Charge" Type="Edm.Guid" />
+            <Property Name="Cat" sap:label="Bestandsart" MaxLength="2" Type="Edm.String" sap:display-format="UpperCase" />
+            <Property Name="StockDoccat" sap:label="Typ" MaxLength="3" Type="Edm.String" sap:quickinfo="Typ: Kundenauftragsbestand oder Projektbestand" sap:display-format="UpperCase" />
+            <Property Name="StockDocno" sap:label="Kundenauftrag/Proj." MaxLength="35" Type="Edm.String" sap:quickinfo="Nummer des Kundenauftrags bzw. Projekts für Sonderbestand" />
+            <Property Name="StockItmno" sap:label="Kundenauftragspos." MaxLength="10" Type="Edm.String" sap:quickinfo="Kundenauftragsposition für Kundenauftragsbestand" sap:display-format="NonNegative" />
+            <Property Name="Doccat" sap:label="Belegtyp" MaxLength="3" Type="Edm.String" sap:quickinfo="Belegtyp für Belegreferenz und belegbezogene Bestände" sap:display-format="UpperCase" />
+            <Property Name="StockUsage" sap:label="Verwendung" MaxLength="1" Type="Edm.String" sap:quickinfo="Bestandsverwendung" sap:display-format="UpperCase" />
+            <Property Name="Owner" sap:label="Eigentümer" MaxLength="28" Type="Edm.String" sap:display-format="UpperCase" />
+            <Property Name="OwnerRole" sap:label="Partner-Rolle" MaxLength="2" Type="Edm.String" sap:quickinfo="Partner-Rolle des Eigentümers" sap:display-format="UpperCase" />
+            <Property Name="Entitled" sap:label="VerfügBer." MaxLength="10" Type="Edm.String" sap:quickinfo="Verfügungsberechtigter" sap:display-format="UpperCase" />
+            <Property Name="EntitledRole" sap:label="Partnerrolle" MaxLength="2" Type="Edm.String" sap:quickinfo="Partner-Rolle des Verfügungsberechtigten" sap:display-format="UpperCase" />
+            <Property Name="StockCnt" sap:label="Zähler" MaxLength="6" Type="Edm.String" sap:quickinfo="Zähler für Bestandstrennung" sap:display-format="NonNegative" />
+            <Property Name="Charg" sap:label="Charge" MaxLength="10" Type="Edm.String" sap:display-format="UpperCase" />
+            <Property Name="Quan" sap:label="Verfügbare Menge" Type="Edm.Decimal" Scale="14" Precision="31" sap:unit="Unit" />
+            <Property Name="Unit" sap:label="Basismengeneinheit" MaxLength="3" Type="Edm.String" sap:semantics="unit-of-measure" />
+            <Property Name="Altme" sap:label="Alt.Mengeneinheit" MaxLength="3" Type="Edm.String" sap:semantics="unit-of-measure" sap:quickinfo="Alternativmengeneinheit zur Lagermengeneinheit" />
+            <Property Name="Vfdat" sap:label="Verfallsdatum" Type="Edm.DateTime" Precision="0" sap:quickinfo="Verfallsdatum oder Mindesthaltbarkeitsdatum" sap:display-format="Date" />
+            <Property Name="Wdatu" sap:label="WE-Datum" Type="Edm.Decimal" Scale="0" Precision="15" sap:quickinfo="Datum und Uhrzeit des Wareneingangs" />
+            <Property Name="Insptyp" sap:label="Inspektionstyp" MaxLength="1" Type="Edm.String" sap:display-format="UpperCase" />
+            <Property Name="Inspid" sap:label="Prüfobjekt" Type="Edm.Guid" sap:quickinfo="Identifikation eines Qualitätsobjektes" />
+            <Property Name="Coo" sap:label="Herkunftsland" MaxLength="3" Type="Edm.String" sap:display-format="UpperCase" />
+            <Property Name="Outcon" sap:label="LgPl verb." MaxLength="1" Type="Edm.String" sap:quickinfo="Lagerplatz verbesserbar" sap:display-format="UpperCase" />
+            <Property Name="Skzsi" sap:label="Inventur aktiv" Type="Edm.Boolean" sap:quickinfo="Sperrkennzeichen: durch laufende Inventur (System)" sap:display-format="UpperCase" />
+            <Property Name="ReadQuants" sap:label="Q Lesen" Type="Edm.Boolean" sap:quickinfo="Quants bei Auslagerung nachlesen" sap:display-format="UpperCase" />
+            <Property Name="Brestr" sap:label="Charge nicht fre" Type="Edm.Boolean" sap:quickinfo="Charge im nicht freien Bestand" sap:display-format="UpperCase" />
+            <Property Name="Logpos" sap:label="logische Position" MaxLength="2" Type="Edm.String" sap:quickinfo="logische Position der Handling Unit" />
+            <Property Name="DummyField" sap:label="" MaxLength="1" Type="Edm.String" sap:quickinfo="Dummyfunktion in der Laenge 1" sap:display-format="UpperCase" />
+            <Property Name="Zeugn" sap:label="Zeugnis-Nr" MaxLength="10" Type="Edm.String" sap:quickinfo="Zeugnisnummer" sap:display-format="UpperCase" />
+         </EntityType>
+         <EntityContainer Name="ZEWM_EF_SI01_SRV_Entities" sap:supported-formats="atom json xlsx" sap:message-scope-supported="true" m:IsDefaultEntityContainer="true">
+            <EntitySet sap:content-version="1" Name="ZEWMIEFSI01STOCKSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZEWM_EF_SI01_SRV.ZEWMIEFSI01STOCK" />
+            <EntitySet sap:content-version="1" Name="ZEWMIEFSI01STSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZEWM_EF_SI01_SRV.ZEWMIEFSI01ST" />
+            <EntitySet sap:content-version="1" Name="ZEWMIEFSI01_AQUA" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZEWM_EF_SI01_SRV.ZEWMIEFSI01_AQUAType" />
+         </EntityContainer>
+      </Schema>
+   </edmx:DataServices>
 </edmx:Edmx>

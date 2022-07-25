@@ -1,0 +1,13 @@
+[
+    {
+        "ID": 1,
+        "Lgtyp": "Fridge kitchen",
+        "Capacity": 80,
+        "TotalQuan": 63,
+        "UnitsOnOrder": 10,
+        "Description": "Fridge kitchen description",
+        "LastRefill": "",
+        "Unit": "PC",
+        "Lgnum": "test"
+    }
+]

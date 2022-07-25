@@ -52,13 +52,24 @@
                         <m:ObjectStatus title="Augustiner"/>
                         <!-- <m:Text text="Fridge {view>/item/Lgtyp} in the kitchen." class="sapUiMediumMarginTop" /> -->
                         <m:Label text="Capacity {view>/item/Lgtyp}" class="sapUiMediumMarginTop"/>
-                        <m:Text text="{path: 'view>/item/TotalQuan', formatter: '.formatter.numberUnitInt'}/{path: 'view>/item/Capacity', formatter: '.formatter.numberUnitInt'}"/>
+                        
 					    <!-- <m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" /> -->
                         <m:ProgressIndicator
                             displayValue="{path: 'view>/item/CapacityVal', formatter: '.formatter.numberUnitInt'}%"
                             percentValue="{path: 'view>/item/CapacityVal', formatter: '.formatter.numberUnitInt'}" 
                             state="Warning"
                             width="125px"
+                        />
+                        <m:Text
+                            text="{
+                                    path: 'view>/item/TotalQuan',
+                                    formatter: '.formatter.numberUnitInt'
+                                }
+                                 von 
+                                {
+                                    path: 'view>/item/Capacity',
+                                    formatter: '.formatter.numberUnitInt'
+                                }"
                         />
                     </l:VerticalLayout>
 
