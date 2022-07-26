@@ -19,21 +19,21 @@
 		</headerToolbar>
 		<columns>
 			<Column>
-				<Text text="Fridge" />
+				<Text text="Fridge Name" />
 			</Column>
 			<Column>
 				<Text text="Description" />
 			</Column>
 			<Column>
-				<Text text="Amount" />
+				<Text text="Total Quantity" />
 			</Column>
 
 		</columns>
 		<items>
 			<ColumnListItem vAlign="Middle" type="Navigation" press=".onPress">
 				<cells>
-					<Text text="{Lgtyp}" wrapping="false" />
-					<Text text="{Lgnum}" wrapping="false"/>
+					<Text text="{NameContainer}" wrapping="false" />
+					<Text text="{Description}" wrapping="false"/>
                     <ObjectNumber number="{path: 'TotalQuan', formatter: '.formatter.numberUnit'}" unit="{Unit}" />
 				</cells>
 			</ColumnListItem>

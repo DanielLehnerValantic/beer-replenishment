@@ -11,15 +11,6 @@
                 </Panel> -->
                 <Title text="How much beer do you want to withdraw?" />
                 <FlexBox direction="Column" alignItems="Center">
-                    <StepInput
-                        id="stepInputDialog"
-                        value="1"
-                        change="onChangeStepInput"
-                        textAlign="Center"
-                        min="1"
-                        max="{path: '/item/TotalQuan', formatter: '.formatter.numberUnitInt'}"
-                        required="true"
-                        width="120px" />
                     <Text text="Available: {path: '/item/TotalQuan', formatter: '.formatter.numberUnit'}" />
                 </FlexBox>
             </VBox>

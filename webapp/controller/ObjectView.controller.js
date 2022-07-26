@@ -29,11 +29,13 @@ sap.ui.define([
             }
 
             // filter binding
+            // var oList = sap.ui.getCore().byId("productTable");
             var oList = this.getView().byId("productTable");
-            var oBinding = oList.getBinding("items");
+            console.log(oList);
+            // var oBinding = oList.getBinding("items");
 
             // activate filter for selected item
-            oBinding.filter(aFilter);
+            // oBinding.filter(aFilter);
 
             // get selected model
             var oModel = sap.ui.getCore().getModel(oModel);
@@ -47,20 +49,6 @@ sap.ui.define([
             var selectedObject = e.getSource().getBindingContext().getObject();
             console.log(selectedObject);
 
-            // test
-            // var oData = this.getModel("selectedItem");
-            // oData.setData({
-            //     item: {
-            //         Lgtyp: selectedObject.Lgtyp,
-            //         Lgnum: selectedObject.Lgnum,
-            //         TotalQuan: selectedObject.TotalQuan,
-            //         Unit: selectedObject.Unit,
-            //         Matid: selectedObject.Matid,
-            //         Mandt: selectedObject.Mandt,
-            //         selectedValue: 0
-            //     }
-            // });
-
             var oData = {
                 item: {
                     Lgtyp: selectedObject.Lgtyp,
@@ -69,7 +57,8 @@ sap.ui.define([
                     Unit: selectedObject.Unit,
                     Matid: selectedObject.Matid,
                     Mandt: selectedObject.Mandt,
-                    selectedValue: 0
+                    SelectedValue: 0,
+                    Items: selectedObject.Items
                 }
             };
 
@@ -103,9 +92,9 @@ sap.ui.define([
         onChangeStepInput: function(e) {
             // var valueStepInput = this.getView().byId("stepInputDialog").getValue();
 
-            // var selectedValModel = this.getModel("selectedValue");
+            // var selectedValModel = this.getModel("SelectedValue");
             // selectedValModel.setData({
-            //     selectedValue: valueStepInput
+            //     SelectedValue: valueStepInput
             // });
         },
 
@@ -115,7 +104,7 @@ sap.ui.define([
             // this.getView().getModel().getData();
 
             var oModel = this.getView().getModel("objectView");
-            oModel.setProperty("/item/selectedValue", valueStepInput);
+            oModel.setProperty("/item/SelectedValue", valueStepInput);
             console.log(oModel);
 
             // var oTable = this.getView().byId("productTable"),
@@ -126,16 +115,16 @@ sap.ui.define([
             // console.log(aItems);
 
             // insert Stepinput value into data model
-            // var selectedValModel = this.getModel("selectedValue");
+            // var selectedValModel = this.getModel("SelectedValue");
             // selectedValModel.setData({
-            //     selectedValue: valueStepInput
+            //     SelectedValue: valueStepInput
             // });
 
             // var createSelectedItemModel = this.getModel("selectedItem");
             // console.log(createSelectedItemModel);
             // oModel.setData({
             //     item1: {
-            //         selectedValue: valueStepInput
+            //         SelectedValue: valueStepInput
             //     }
             // });
 

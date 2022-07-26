@@ -44,7 +44,7 @@
 
 		<headerContent>
 			<m:FlexBox wrap="Wrap" fitContainer="true">
-                <m:Image src="/img/gettyimages-dv1955004-1024x1024.jpg" width="150px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+                <m:Image src="/img/fridge/fridge_{view>/item/Lgtyp}.jpg" width="150px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
                 <l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
                     <l:VerticalLayout class="sapUiSmallMarginBeginEnd" width="150px">
                         <m:ObjectStatus title="Beer"/>
@@ -65,7 +65,7 @@
                                     path: 'view>/item/TotalQuan',
                                     formatter: '.formatter.numberUnitInt'
                                 }
-                                 von 
+                                 of 
                                 {
                                     path: 'view>/item/Capacity',
                                     formatter: '.formatter.numberUnitInt'
@@ -80,7 +80,7 @@
                     </l:VerticalLayout>
 
                     <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
-                        <m:ObjectStatus text="0" state="Success"/>
+                        <m:ObjectStatus text="{view>/item/Items/TotalQuan}" state="Success"/>
                         <m:ObjectStatus text="{path: 'view>/item/TotalQuan', formatter: '.formatter.numberUnit'}" state="Warning"/>
                         <m:ObjectStatus text="0" state="Error"/>
                     </l:VerticalLayout>
@@ -102,79 +102,19 @@
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-							<!-- <items:Info id="itemsInfo"/> -->
-                            <!-- <fragment:List id="itemsList"/> -->
+							<!-- <core:Fragment fragmentName="beerreplenishment.view.fragment.ObjectList" type="XML" 
+							id="ObjectList"/> -->
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
 
-            <ObjectPageSection titleUppercase="false" title="Drinks in fridge">
+            <ObjectPageSection titleUppercase="false" title="Drinks in fridge ({view>/item/TotalQuan})">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>
-                            <m:Table
-                                id="productTable"
-                                items="{
-                                    path: '/ZEWMIEFSI01STOCKSet',
-                                    sorter: {
-                                        path: 'Lgtyp'
-                                    }
-                                }">
-                                <!-- <m:headerToolbar>
-                                    <m:Toolbar>
-                                        <m:SearchField width="25%" search=".onSearchProduct"/>   
-                                    </m:Toolbar>
-                                </m:headerToolbar> -->
-                                <m:columns>
-                                    <m:Column>
-                                        <m:Text text="Product" />
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="Description" />
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="Available Quantity" />
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="Selected Quantity" />
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="Select" />
-                                    </m:Column>
-
-                                </m:columns>
-                                <m:items>
-                                    <m:ColumnListItem vAlign="Middle" press=".openDialog">
-                                        <m:cells>
-                                            <m:ObjectIdentifier
-                                                title="{Lgtyp}"
-                                                text="{Lgnum}"/>
-                                            <m:Text text="{Lgnum}" wrapping="false"/>
-                                            <m:ObjectNumber
-                                                number="{
-                                                    path: 'TotalQuan',
-                                                    formatter: '.formatter.numberUnit'}"
-                                                unit="{Unit}"
-                                            />
-                                            <m:ObjectNumber
-                                                id="selectedValueTable"
-                                                number="{objectView>/item/selectedValue}"
-                                                unit="{Unit}"
-                                            />
-                                            <!-- <m:ObjectNumber
-                                                id="selectedValueTable"
-                                                number="{selectedItem>/item/selectedValue}"
-                                                unit="{Unit}"
-                                            /> -->
-                                            <m:Button
-                                                id="takeBeerButton"
-                                                text="Take a Beer"
-                                                press=".onOpenDialog"/>
-                                        </m:cells>
-                                    </m:ColumnListItem>
-                                </m:items>
-                            </m:Table>
+                            <core:Fragment fragmentName="beerreplenishment.view.fragment.ObjectList" type="XML" 
+							id="ObjectList"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

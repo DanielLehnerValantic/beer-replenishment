@@ -25,7 +25,6 @@ sap.ui.define([
 			oMockServer.simulate(sMetadataRelativePath, oMockSettings);
 			oMockServer.start();
 
-            console.log("mockserver started");
 		}
 
 	};

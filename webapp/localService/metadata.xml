@@ -39,7 +39,7 @@
             <Property Name="TotalQuan" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:unicode="false" Nullable="false" Type="Edm.Decimal" Scale="14" Precision="31" />
             <Property Name="Unit" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Basiseinheit" sap:unicode="false" MaxLength="3" Nullable="false" Type="Edm.String" sap:semantics="unit-of-measure" />
          </EntityType>
-         <EntityType sap:content-version="1" Name="ZEWMIEFSI01_AQUAType">
+         <!-- <EntityType sap:content-version="1" Name="ZEWMIEFSI01_AQUAType">
             <Key>
                <PropertyRef Name="GuidParent" />
                <PropertyRef Name="GuidStock" />
@@ -82,11 +82,11 @@
             <Property Name="Logpos" sap:label="logische Position" MaxLength="2" Type="Edm.String" sap:quickinfo="logische Position der Handling Unit" />
             <Property Name="DummyField" sap:label="" MaxLength="1" Type="Edm.String" sap:quickinfo="Dummyfunktion in der Laenge 1" sap:display-format="UpperCase" />
             <Property Name="Zeugn" sap:label="Zeugnis-Nr" MaxLength="10" Type="Edm.String" sap:quickinfo="Zeugnisnummer" sap:display-format="UpperCase" />
-         </EntityType>
+         </EntityType> -->
          <EntityContainer Name="ZEWM_EF_SI01_SRV_Entities" sap:supported-formats="atom json xlsx" sap:message-scope-supported="true" m:IsDefaultEntityContainer="true">
             <EntitySet sap:content-version="1" Name="ZEWMIEFSI01STOCKSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZEWM_EF_SI01_SRV.ZEWMIEFSI01STOCK" />
             <EntitySet sap:content-version="1" Name="ZEWMIEFSI01STSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZEWM_EF_SI01_SRV.ZEWMIEFSI01ST" />
-            <EntitySet sap:content-version="1" Name="ZEWMIEFSI01_AQUA" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZEWM_EF_SI01_SRV.ZEWMIEFSI01_AQUAType" />
+            <!-- <EntitySet sap:content-version="1" Name="ZEWMIEFSI01_AQUA" sap:updatable="false" sap:creatable="false" sap:deletable="false" EntityType="ZEWM_EF_SI01_SRV.ZEWMIEFSI01_AQUAType" /> -->
          </EntityContainer>
       </Schema>
    </edmx:DataServices>

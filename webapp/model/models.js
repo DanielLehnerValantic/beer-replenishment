@@ -19,20 +19,20 @@ sap.ui.define([
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
             },
-            createSelectedValModel: function() {
-                return new JSONModel({ selectedValue: 0});
-            },
-            createSelectedItemModel: function() {
-                return new JSONModel({
-                    item: {
-                        Lgtyp: "",
-                        Lgnum: "",
-                        TotalQuan: "",
-                        Unit: "",
-                        Matid: "",
-                        selectedValue: "0"
-                    }
-                });
-            }
+            // createSelectedValModel: function() {
+            //     return new JSONModel({ SelectedValue: 0});
+            // },
+            // createSelectedItemModel: function() {
+            //     return new JSONModel({
+            //         item: {
+            //             Lgtyp: "",
+            //             Lgnum: "",
+            //             TotalQuan: "",
+            //             Unit: "",
+            //             Matid: "",
+            //             SelectedValue: "0"
+            //         }
+            //     });
+            // }
     };
 });
