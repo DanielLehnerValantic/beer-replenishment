@@ -4,16 +4,46 @@
 	xmlns:core="sap.ui.core">
     <Dialog
         id="takeDialog"
-        title="Name of Beer">
+        title="{/item/NameItem}">
         <content>
-            <VBox class="sapUiTinyMargin" justifyContent="SpaceBetween" alignItems="Center" alignContent="Center">
-                <!-- <Panel class="sapUiResponsiveMargin" headerText="How much beer do you want to withdraw?">
-                </Panel> -->
-                <Title text="How much beer do you want to withdraw?" />
-                <FlexBox direction="Column" alignItems="Center">
-                    <Text text="Available: {path: '/item/TotalQuan', formatter: '.formatter.numberUnit'}" />
-                </FlexBox>
-            </VBox>
+
+            <HBox class="sapUiTinyMargin" alignItems="Center" alignContent="Center">
+                <VBox class="sapUiTinyMargin" alignItems="Center" alignContent="Center">
+                   
+                    <Title text="Choose how much pieces you want to take." />
+                </VBox>
+            </HBox>
+            
+            <HBox class="sapUiSmallMargin" alignItems="Center" alignContent="Center">
+                <VBox class="sapUiTinyMargin" alignItems="Start">
+                    <Text text="Available:" />
+                    <Text text="Alcohol:" />
+                    <Text text="Category:" />
+                </VBox>
+                <VBox class="sapUiTinyMargin" alignItems="Start" alignContent="Center">
+                    <Text text="{/item/TotalQuan} {/item/Unit}" />
+                    <Text text="{/item/Alcohol} %" />
+                    <Text text="{/item/Category}" />
+                </VBox>
+            </HBox>
+
+            <HBox class="sapUiSmallMargin" alignItems="Center" alignContent="Center">
+                <VBox class="sapUiTinyMargin">
+                    <Image src="/img/drink/{/item/Name}.jpg" width="50px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+                </VBox>
+                <VBox class="sapUiTinyMargin">
+                    <Text text="Userrating:" />
+                    <RatingIndicator maxValue="5" value="{/item/Rating}" tooltip="'{NameItem}' userrating" />
+                    <Text class="sapUiSmallMarginBottom" text="{/item/Rating} / 5 - (7) Ratings" />
+                    <Text text="Nutritional information per 100 ml:" />
+                    <Text text="176 kJ ( 42.24 kcal)" />
+                </VBox>
+            </HBox>
+
+            <HBox width="250px" class="sapUiSmallMargin" alignItems="Center" alignContent="Center">
+                <Text text="{/item/Description}" />
+            </HBox>
+
         </content>
         <beginButton>
             <Button

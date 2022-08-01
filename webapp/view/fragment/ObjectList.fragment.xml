@@ -43,7 +43,7 @@
                 <cells>
                     <ObjectIdentifier
                         title="{NameItem}"
-                        text="{NameContainer}"/>
+                        text="{NameItem}"/>
                     <!-- <Text text="{Lgnum}" wrapping="false"/> -->
                     <!-- <Text text="{Category}" wrapping="false"/> -->
                     <ObjectNumber

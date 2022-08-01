@@ -19,7 +19,7 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xml:lang="de" Namespace="ZEWM_EF_SI01_SRV" sap:schema-version="1">
          <EntityType sap:content-version="1" Name="ZEWMIEFSI01STOCK">
             <Key>
-               <PropertyRef Name="Lgnum" />
+               <PropertyRef Name="ID" />
                <PropertyRef Name="Lgtyp" />
             </Key>
             <Property Name="Mandt" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Mandant" sap:unicode="false" MaxLength="3" Nullable="false" Type="Edm.String" />

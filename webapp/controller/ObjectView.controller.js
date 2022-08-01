@@ -29,19 +29,50 @@ sap.ui.define([
             }
 
             // filter binding
-            // var oList = sap.ui.getCore().byId("productTable");
             var oList = this.getView().byId("productTable");
-            console.log(oList);
-            // var oBinding = oList.getBinding("items");
-
+            var oBinding = oList.getBinding("items");
             // activate filter for selected item
-            // oBinding.filter(aFilter);
+            oBinding.filter(aFilter);
+
+            ////////////////////////////////////////////////////////////////////////tests////////////////////////////////
+            // console.log(oList);
+            // console.log(oBinding);
+
+
+            // // var test = oBinding.filter(aFilter);
+            // var testing = oBinding["aKeys"];
+            // var testing1 = oBinding["aKeys"].length;
+            // console.log(testing);
+            // console.log(testing1);
+            // var itemPath = oBinding.getPath().replace('/','');;
+            // // hallo5 = hallo5.replace('/','');
+
+            // for (var i = 0; i < testing.length; i++) {
+            //     console.log(i);
+            // }
+
+
+            // var itemFullPath = itemPath + "(ID=1,Lgtyp='VAK1')";
+            // console.log(itemFullPath);
+
+            // var test = this.getView().byId("productTable").getModel().oData;
+            // // var test2 = test["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            // // var obj = [
+            // //     test[itemFullPath]
+            // // ]
+
+            // console.log(test);
+            // console.log(obj);
+            ////////////////////////////////////////////////////////////////////////tests////////////////////////////////
+            
 
             // get selected model
             var oModel = sap.ui.getCore().getModel(oModel);
-            // var oData = oModel.getData();
-            this.getView().setModel(oModel, "view");
 
+            var oData = oModel.getData();
+            console.log(oData);
+
+            this.getView().setModel(oModel, "view");   
         },
 
         onOpenDialog: function(e) {
@@ -55,10 +86,16 @@ sap.ui.define([
                     Lgnum: selectedObject.Lgnum,
                     TotalQuan: selectedObject.TotalQuan,
                     Unit: selectedObject.Unit,
-                    Matid: selectedObject.Matid,
-                    Mandt: selectedObject.Mandt,
+                    // Matid: selectedObject.Matid,
+                    // Mandt: selectedObject.Mandt,
                     SelectedValue: 0,
-                    Items: selectedObject.Items
+                    // Items: selectedObject.Items,
+                    NameItem: selectedObject.NameItem,
+                    Name: selectedObject.Name,
+                    Rating: selectedObject.Rating,
+                    Description: selectedObject.Description,
+                    Alcohol: selectedObject.Alcohol,
+                    Category: selectedObject.Category
                 }
             };
 
