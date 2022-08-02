@@ -4,8 +4,9 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Fragment",
     "beerreplenishment/model/formatter",
+    "sap/m/MessageBox",
     "sap/ui/model/json/JSONModel"
-], function (BaseController, Filter, FilterOperator, Fragment, formatter, JSONModel) {
+], function (BaseController, Filter, FilterOperator, Fragment, formatter, MessageBox, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("beerreplenishment.controller.ObjectView", {
@@ -34,45 +35,30 @@ sap.ui.define([
             // activate filter for selected item
             oBinding.filter(aFilter);
 
-            ////////////////////////////////////////////////////////////////////////tests////////////////////////////////
-            // console.log(oList);
-            // console.log(oBinding);
-
-
-            // // var test = oBinding.filter(aFilter);
-            // var testing = oBinding["aKeys"];
-            // var testing1 = oBinding["aKeys"].length;
-            // console.log(testing);
-            // console.log(testing1);
-            // var itemPath = oBinding.getPath().replace('/','');;
-            // // hallo5 = hallo5.replace('/','');
-
-            // for (var i = 0; i < testing.length; i++) {
-            //     console.log(i);
-            // }
-
-
-            // var itemFullPath = itemPath + "(ID=1,Lgtyp='VAK1')";
-            // console.log(itemFullPath);
-
-            // var test = this.getView().byId("productTable").getModel().oData;
-            // // var test2 = test["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            // // var obj = [
-            // //     test[itemFullPath]
-            // // ]
-
-            // console.log(test);
-            // console.log(obj);
-            ////////////////////////////////////////////////////////////////////////tests////////////////////////////////
-            
 
             // get selected model
             var oModel = sap.ui.getCore().getModel(oModel);
+            this.getView().setModel(oModel, "view");
+            console.log(oModel);
 
-            var oData = oModel.getData();
-            console.log(oData);
+            var test = oModel.getData();
+            var test2 = test.item.Items;
+            console.log(test2);
+            var sum = 0;
+            console.log(test2[0].TotalQuan);
 
-            this.getView().setModel(oModel, "view");   
+            for (var i = 0; i < test2.length; i++) {
+                sum = sum + test2[i].TotalQuan;
+                // console.log(test2[i].TotalQuan);
+            }
+            console.log(sum);
+
+            var oDataLocal = {
+                item: {
+                    Capacity: sum,
+
+                }
+            }
         },
 
         onOpenDialog: function(e) {
@@ -126,60 +112,16 @@ sap.ui.define([
         },
 
         onCancelDialog: function(e) {
-			// this.byId("takeDialog").close();
             e.getSource().getParent().destroy();
 		},
 
-        
-
-        onSubmitDialog: function(e) {
-            // get Dialog Stepinput value
-            var valueStepInput = this.getView().byId("stepInputDialog").getValue();
-            // this.getView().getModel().getData();
-
-            var oModel = this.getView().getModel("objectView");
-            oModel.setProperty("/item/SelectedValue", valueStepInput);
-            console.log(oModel);
-
-            // var oTable = this.getView().byId("productTable"),
-                // oModel = oTable.getModel();
-                
-            // console.log(oTable);
-            // console.log(oModel);
-            // console.log(aItems);
-
-            // insert Stepinput value into data model
-            // var selectedValModel = this.getModel("SelectedValue");
-            // selectedValModel.setData({
-            //     SelectedValue: valueStepInput
-            // });
-
-            // var createSelectedItemModel = this.getModel("selectedItem");
-            // console.log(createSelectedItemModel);
-            // oModel.setData({
-            //     item1: {
-            //         SelectedValue: valueStepInput
-            //     }
-            // });
-
-            // console.log(createSelectedItemModel);
-            
-            e.getSource().getParent().destroy();
-        },
-
         onChangeStepInput: function(e) {
-            // this.getView().getModel().refresh();
             var valueStepInput = e.getSource().getValue();
             console.log(valueStepInput);
 
             var oModel = this.getModel();
             var path = e.getSource().getBindingContext().getPath();
             var obj = oModel.getProperty(path);
-
-            // var availableQuant = obj.TotalQuan;
-            // var availableQuantAfter = availableQuant - valueStepInput;
-            // console.log(availableQuant);
-            // obj.TotalQuan = availableQuantAfter;
 
             obj.SelectedValue = valueStepInput;
             
@@ -188,127 +130,42 @@ sap.ui.define([
 
         onSave: function(e) {
 
-            // var oModel = this.getModel();
-            // var path = oModel.getPath();
-            // var obj = oModel.getProperty(path);
-            // console.log(path);
-
             var oModel = this.getView().getModel(oModel, "/ZEWMIEFSI01STOCKSet");
-            console.log(test);
-            var test2 = test.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            console.log(test2);
-            var test3 = test.oData;
-            console.log(test3);
-
-            
-
-            var oModel = this.getView().getModel(oModel, "objectView");
-            var oModel2 = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            // var path = oModel.getPath();
             console.log(oModel);
-            
+            var oData = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            console.log(oData);
 
-            var aEntries = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            console.log(aEntries);
+            var testData = {
+                TotalQuan: oData.SelectedValue
+            }
+            console.log(testData);
 
-
-            test2.TotalQuan = aEntries.SelectedValue;
-
-            console.log(test2);
-
-            var oEntry = {
-                TotalQuan: aEntries.SelectedValue
-            };
-
-            // oEntry.Carrid = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            // oEntry.Carrname = aEntries.SelectedValue;
-            // oEntry.Currcode = this.getView().byId("currcode").getValue();
-            // oEntry.Url = this.getView().byId("url").getValue();
+            oData.TotalQuan = testData.TotalQuan;
 
 
-            var oTable = this.getView().byId("productTable");
-            oTable.getModel("/ZEWMIEFSI01STOCKSet");
-            console.log(oTable);
-            oTable.setModel(oModel, "objectView");
-            console.log(oTable);
-            // console.log(test4);
-            // test.update("/ZEWMIEFSI01STOCKSet", oModel, {
-            //     method: "PUT",
-            //     success: function(data) {
-            //         // test2.TotalQuan = aEntries.SelectedValue;
-            //         sap.m.MessageBox.show("success");
-            //         alert("success");
-            //         // return;
-            //     },
-            //     error: function(e) {
-            //         alert("error");
-            //         // return;
-            //     }
-            // });
-
-
-
-
-
-            // var aEntries = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            // // var aEntries = oModel.oData[0];
-            // console.log(aEntries);
-            // var SelectedValue = aEntries.SelectedValue;
-
-            // // aEntries.SelectedValue = 12;
-            // // console.log(aEntries);
-
-            // var test = oModel.getData();
-            // console.log(test);
-
-            // var oData = {
-            //     item: {
-            //         TotalQuan: aEntries.SelectedValue
-            //     }
-            // }
-
-            // // creating new model with selected data
-            // var oModel = new JSONModel(oData);
-
-            // // making the model available for other views
-            // sap.ui.getCore().setModel(oModel);
-            // this.getView().setModel(oModel, "objectView");
-
-
-            // oModel.setData({ SelectedValue: 12 });
-            // var test = this.getView().getBindingContext().getObject();
-            // console.log(test);
-
-            // console.log(path);
-
-            // var oModel = this.getModel();
-            // var path = oModel.getPath();
-            // var obj = oModel.getProperty(path);
-            // var obj = oModel.oData;
-            // console.log(obj);
-            // var test = oModel.oData[0].TotalQuan;
-            // console.log(test);
-            // var availableQuant = obj.TotalQuan;
-            // console.log(availableQuant);
-
-            // obj.SelectedValue = valueStepInput;
-
-
-
-            // var oModel = this.getModel();
-
-            // var oData = oModel.getData();
-            // console.log(oData);
-            // // var oModel = this.getModel();
-            // // var path = e.getSource().getBindingContext().getPath();
-            // // var obj = oModel.getProperty(path);
-            // console.log(oModel);
-
-
-
-            // oModel.update("ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", oData);
-            // oModel.setRefreshAfterChange(false);
-            // oModel.refresh();
+            if (oData.SelectedValue !== 0) {
+                oModel.update("/ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", testData, {
+                    method: "PUT",
+                    success: function(data) {
+                        // test2.TotalQuan = aEntries.SelectedValue;
+                        MessageBox.success(
+                            "Successfully removed drink, enjoy!",
+                            {
+                                title: "Successful!",
+                                emphasizedAction: MessageBox.Action.OK
+                            });
+                        // alert("success");
+                    },
+                    error: function(e) {
+                        MessageBox.error("Something went wrong. Please try again.");
+                    }
+                });
+            } else {
+                MessageBox.error("Please select a Drink first.",
+                {
+                    title: "Error!",
+                });
+            }
         }
 
         

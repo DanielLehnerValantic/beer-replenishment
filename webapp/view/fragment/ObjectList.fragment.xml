@@ -18,15 +18,12 @@
             </Toolbar>
         </headerToolbar> -->
         <columns>
+            <Column width="5%">
+                <!-- <Text text="Product" /> -->
+            </Column>
             <Column width="35%">
                 <Text text="Product" />
             </Column>
-            <!-- <Column>
-                <Text text="Description" />
-            </Column> -->
-            <!-- <Column>
-                <Text text="Category" />
-            </Column> -->
             <Column>
                 <Text text="Available" />
             </Column>
@@ -41,26 +38,31 @@
         <items>
             <ColumnListItem type="Navigation" vAlign="Middle" press=".onOpenDialog">
                 <cells>
-                    <!-- <ObjectIdentifier
-                        title="{NameItem}"
-                        text="{NameContainer} ({Lgtyp})"/> -->
-                        <ObjectIdentifier
-                        title="{NameItem}"
-                        text="{NameContainer} ({Lgtyp})"/>
+                    <Image src="/img/drink/{Name}.jpg" height="70px" class="" />
+                    <ObjectIdentifier
+                    title="{NameItem}"
+                    text="{NameContainer} ({Lgtyp})"/>
                     <!-- <Text text="{Lgnum}" wrapping="false"/> -->
                     <!-- <Text text="{Category}" wrapping="false"/> -->
-                    <ObjectNumber
+                    <!-- <ObjectNumber
                         id="itemTotalQuan"
                         number="{
                             path: 'TotalQuan',
                             formatter: '.formatter.numberUnit'}"
                         unit="{Unit}"
-                    />
-                    <!-- <ObjectNumber
-                        id="selectedValueTable"
-                        number="{SelectedValue}"
-                        unit="{Unit}"
+                        state="{
+                            path: 'TotalQuan',
+                            formatter: '.formatter.quantityState'}"
                     /> -->
+                    <ObjectNumber
+                        id="itemTotalQuan"
+                        number="{TotalQuan}"
+                        inverted="true"
+                        unit="{Unit}"
+                        state="{
+                            path: 'TotalQuan',
+                            formatter: '.formatter.quantityState'}"
+                    />
                     <StepInput
                         id="stepInput"
                         value="0"
@@ -73,15 +75,6 @@
                         width="150px" />
                         <!-- <Text text="{Lgnum}" wrapping="false"/> -->
                     <RatingIndicator maxValue="5" value="{Rating}" tooltip="Rate '{NameItem}' now"/>
-                    <!-- <ObjectNumber
-                        id="selectedValueTable"
-                        number="{selectedItem>/item/SelectedValue}"
-                        unit="{Unit}"
-                    /> -->
-                    <!-- <Button
-                        id="takeBeerButton"
-                        text="Take a Beer"
-                        press=".onOpenDialog"/> -->
                 </cells>
             </ColumnListItem>
         </items>

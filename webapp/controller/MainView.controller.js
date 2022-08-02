@@ -35,7 +35,8 @@ sap.ui.define([
                         CapacityVal: capacityVal,
                         NameContainer: selectedObject.NameContainer,
                         Description: selectedObject.Description,
-                        LastRefill: selectedObject.LastRefill
+                        LastRefill: selectedObject.LastRefill,
+                        Items: selectedObject.Items
                     }
                 };
 

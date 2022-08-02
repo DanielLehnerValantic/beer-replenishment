@@ -45,15 +45,16 @@
             </HBox>
 
         </content>
-        <beginButton>
+        <!-- <beginButton>
             <Button
                 text="Submit"
                 type="Emphasized"
                 press=".onSubmitDialog" />
-        </beginButton>
+        </beginButton> -->
         <endButton>
             <Button
-				text="Cancel"
+				text="Close"
+                type="Emphasized"
 				press=".onCancelDialog" />
         </endButton>
    </Dialog>

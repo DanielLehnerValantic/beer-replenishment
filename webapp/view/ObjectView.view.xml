@@ -54,11 +54,12 @@
 
 		<headerContent>
 			<m:FlexBox wrap="Wrap" fitContainer="true">
-                <m:Image src="/img/fridge/fridge_{view>/item/Lgtyp}.jpg" width="150px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+                <!-- <m:Image src="/img/fridge/fridge_{view>/item/Lgtyp}.jpg" width="150px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" /> -->
                 <l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
-                    <l:VerticalLayout class="sapUiSmallMarginBeginEnd" width="150px">
+                    <m:Image src="/img/fridge/fridge_{view>/item/Lgtyp}.jpg" width="150px" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
+                    <l:VerticalLayout class="sapUiSmallMarginBegin" width="150px">
                         
-                        <m:ObjectStatus title="Last Refill:"/>
+                        <m:ObjectStatus title="Last Refill"/>
                         <m:Text text="{view>/item/LastRefill}"/>
                         <!-- <m:ObjectStatus title="Augustiner"/> -->
                         <!-- <m:Text text="Fridge {view>/item/Lgtyp} in the kitchen." class="sapUiMediumMarginTop" /> -->
@@ -90,17 +91,17 @@
                         <m:ObjectStatus text="Out of stock:" state="Error"/>
                     </l:VerticalLayout> -->
 
-                    <l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+                    <l:VerticalLayout class="sapUiTinyMarginBeginEnd">
                         <!-- <m:ObjectStatus text="{view>/item/Items/0/TotalQuan}" state="Success"/>
                         <m:ObjectStatus text="{view>/item/Items/1/TotalQuan}" state="Warning"/>
                         <m:ObjectStatus text="{view>/item/Items/2/TotalQuan}" state="Error"/> -->
-                        <m:FlexBox width="20rem" height="10rem" alignItems="Start" justifyContent="SpaceBetween">
+                        <m:FlexBox width="25rem" height="10rem" alignItems="Start" justifyContent="SpaceBetween">
                             <m:items>
-                                <microChart:InteractiveDonutChart selectionChanged="onSelectionChanged" selectionEnabled="false">
+                                <microChart:InteractiveDonutChart selectionChanged="onSelectionChanged" selectionEnabled="true">
                                     <microChart:segments>
-                                        <microChart:InteractiveDonutChartSegment label="Tegernseer Hell" value="40.0" displayedValue="40.0%"/>
-                                        <microChart:InteractiveDonutChartSegment label="Augustiner Hell" value="21.5" displayedValue="21.5%"/>
-                                        <microChart:InteractiveDonutChartSegment label="Test Phase" value="38.5" displayedValue="38.5%"/>
+                                        <microChart:InteractiveDonutChartSegment label="{view>/item/Items/0/NameItem}" value="{view>/item/Items/0/TotalQuanPerc}" displayedValue="{view>/item/Items/0/TotalQuan} {view>/item/Items/0/Unit}"/>
+                                        <microChart:InteractiveDonutChartSegment label="{view>/item/Items/1/NameItem}" value="{view>/item/Items/1/TotalQuanPerc}" displayedValue="{view>/item/Items/1/TotalQuan} {view>/item/Items/1/Unit}"/>
+                                        <microChart:InteractiveDonutChartSegment label="{view>/item/Items/2/NameItem}" value="{view>/item/Items/2/TotalQuanPerc}" displayedValue="{view>/item/Items/2/TotalQuan} {view>/item/Items/2/Unit}"/>
                                     </microChart:segments>
                                 </microChart:InteractiveDonutChart>
                             </m:items>
