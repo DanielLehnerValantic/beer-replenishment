@@ -88,7 +88,7 @@ sap.ui.define([
                     Unit: selectedObject.Unit,
                     // Matid: selectedObject.Matid,
                     // Mandt: selectedObject.Mandt,
-                    SelectedValue: 0,
+                    SelectedValue: selectedObject.SelectedValue,
                     // Items: selectedObject.Items,
                     NameItem: selectedObject.NameItem,
                     Name: selectedObject.Name,
@@ -126,14 +126,7 @@ sap.ui.define([
             e.getSource().getParent().destroy();
 		},
 
-        onChangeStepInput: function(e) {
-            // var valueStepInput = this.getView().byId("stepInputDialog").getValue();
-
-            // var selectedValModel = this.getModel("SelectedValue");
-            // selectedValModel.setData({
-            //     SelectedValue: valueStepInput
-            // });
-        },
+        
 
         onSubmitDialog: function(e) {
             // get Dialog Stepinput value
@@ -168,6 +161,83 @@ sap.ui.define([
             // console.log(createSelectedItemModel);
             
             e.getSource().getParent().destroy();
+        },
+
+        onChangeStepInput: function(e) {
+            // this.getView().getModel().refresh();
+            var valueStepInput = e.getSource().getValue();
+            console.log(valueStepInput);
+
+            var oModel = this.getModel();
+            var path = e.getSource().getBindingContext().getPath();
+            var obj = oModel.getProperty(path);
+
+            // var availableQuant = obj.TotalQuan;
+            // var availableQuantAfter = availableQuant - valueStepInput;
+            // console.log(availableQuant);
+            // obj.TotalQuan = availableQuantAfter;
+
+            obj.SelectedValue = valueStepInput;
+            
+            console.log(obj);
+        },
+
+        onSave: function(e) {
+
+            // var oModel = this.getModel();
+            // var path = oModel.getPath();
+            // var obj = oModel.getProperty(path);
+            // console.log(path);
+
+            var oData = {
+                item: {
+                    TotalQuan: 1
+                }
+            }
+
+            var oModel = this.getView().getModel(oModel, "objectView");
+            // var path = oModel.getPath();
+            console.log(oModel);
+            var aEntries = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            console.log(aEntries);
+            var SelectedValue = aEntries.SelectedValue;
+
+            // aEntries.SelectedValue = 12;
+            console.log(aEntries);
+            SelectedValue.setData({ SelectedValue: 12 });
+            // var test = this.getView().getBindingContext().getObject();
+            // console.log(test);
+
+            // console.log(path);
+
+            // var oModel = this.getModel();
+            // var path = oModel.getPath();
+            // var obj = oModel.getProperty(path);
+            // var obj = oModel.oData;
+            // console.log(obj);
+            // var test = oModel.oData[0].TotalQuan;
+            // console.log(test);
+            // var availableQuant = obj.TotalQuan;
+            // console.log(availableQuant);
+
+            // obj.SelectedValue = valueStepInput;
+
+
+
+            // var oModel = this.getModel();
+
+            // var oData = oModel.getData();
+            // console.log(oData);
+            // // var oModel = this.getModel();
+            // // var path = e.getSource().getBindingContext().getPath();
+            // // var obj = oModel.getProperty(path);
+            // console.log(oModel);
+
+
+
+            oModel.update("ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", oData);
+            // oModel.setRefreshAfterChange(false);
+            // oModel.refresh();
         }
 
         

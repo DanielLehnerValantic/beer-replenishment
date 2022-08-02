@@ -43,7 +43,7 @@
                 <cells>
                     <ObjectIdentifier
                         title="{NameItem}"
-                        text="{NameItem}"/>
+                        text="{NameContainer} ({Lgtyp})"/>
                     <!-- <Text text="{Lgnum}" wrapping="false"/> -->
                     <!-- <Text text="{Category}" wrapping="false"/> -->
                     <ObjectNumber
@@ -58,7 +58,7 @@
                         unit="{Unit}"
                     /> -->
                     <StepInput
-                        id="stepInputDialog"
+                        id="stepInput"
                         value="0"
                         change="onChangeStepInput"
                         textAlign="Center"

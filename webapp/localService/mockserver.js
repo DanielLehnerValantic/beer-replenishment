@@ -18,7 +18,7 @@ sap.ui.define([
 			var sMetadataRelativePath = "../localService/metadata.xml";
 			var oMockSettings = {
 				sMockdataBaseUrl: "../localService/data",
-				bGenerateMissingMockData: false
+				bGenerateMissingMockData: true
 			};
 			var oMockServer = this.oMockServer;
 

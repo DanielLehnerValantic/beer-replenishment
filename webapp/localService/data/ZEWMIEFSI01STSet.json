@@ -6,7 +6,7 @@
         "TotalQuan": 60,
         "UnitsOnOrder": 10,
         "Description": "The fridge in the main kitchen.",
-        "LastRefill": "",
+        "LastRefill": "01.08.2022",
         "Unit": "PC",
         "Lgnum": "test"
     },
@@ -17,7 +17,7 @@
         "TotalQuan": 30,
         "UnitsOnOrder": 10,
         "Description": "The fridge in the small kitchen.",
-        "LastRefill": "",
+        "LastRefill": "02.08.2022",
         "Unit": "PC",
         "Lgnum": "test"
     },
@@ -28,7 +28,7 @@
         "TotalQuan": 30,
         "UnitsOnOrder": 10,
         "Description": "The fridge in the small kitchen.",
-        "LastRefill": "",
+        "LastRefill": "03.08.2022",
         "Unit": "PC",
         "Lgnum": "test"
     }

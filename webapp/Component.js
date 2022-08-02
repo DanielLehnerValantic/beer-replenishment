@@ -25,12 +25,6 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
-
-                // set the selected value model
-                // this.setModel(models.createSelectedValModel(), "SelectedValue");
-
-                // set the selected item model
-                // this.setModel(models.createSelectedItemModel(), "SelectedValue");
                 
             }
         });

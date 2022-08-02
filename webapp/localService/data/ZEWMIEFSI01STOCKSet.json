@@ -2,7 +2,7 @@
     {
         "ID": 1,
         "Lgtyp": "VAK1",
-        "NameContainer": "Kitchen-Fridge1",
+        "NameContainer": "Kitchen-Fridge",
         "NameItem": "Tegernseer Hell 0,5",
         "Name": "tegernseer_hell",
         "TotalQuan": 21,
@@ -18,7 +18,7 @@
     {
         "ID": 2,
         "Lgtyp": "VAK1",
-        "NameContainer": "Kitchen-Fridge2",
+        "NameContainer": "Kitchen-Fridge",
         "NameItem": "Augustiner Hell 0,5",
         "TotalQuan": 15,
         "UnitsOnOrder": 10,
@@ -32,7 +32,7 @@
     {
         "ID": 3,
         "Lgtyp": "VAK1",
-        "NameContainer": "Kitchen-Fridge3",
+        "NameContainer": "Kitchen-Fridge",
         "NameItem": "Test Hell 0,5",
         "TotalQuan": 19,
         "UnitsOnOrder": 10,
