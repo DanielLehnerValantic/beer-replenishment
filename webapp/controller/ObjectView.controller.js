@@ -82,8 +82,9 @@ sap.ui.define([
 
             var oData = {
                 item: {
+                    ID: selectedObject.ID,
                     Lgtyp: selectedObject.Lgtyp,
-                    Lgnum: selectedObject.Lgnum,
+                    // Lgnum: selectedObject.Lgnum,
                     TotalQuan: selectedObject.TotalQuan,
                     Unit: selectedObject.Unit,
                     // Matid: selectedObject.Matid,
@@ -95,7 +96,10 @@ sap.ui.define([
                     Rating: selectedObject.Rating,
                     Description: selectedObject.Description,
                     Alcohol: selectedObject.Alcohol,
-                    Category: selectedObject.Category
+                    Category: selectedObject.Category,
+                    NameContainer: selectedObject.NameContainer,
+                    UnitsOnOrder: selectedObject.UnitsOnOrder,
+                    LastRefill: selectedObject.LastRefill
                 }
             };
 
@@ -189,22 +193,89 @@ sap.ui.define([
             // var obj = oModel.getProperty(path);
             // console.log(path);
 
-            var oData = {
-                item: {
-                    TotalQuan: 1
-                }
-            }
+            var oModel = this.getView().getModel(oModel, "/ZEWMIEFSI01STOCKSet");
+            console.log(test);
+            var test2 = test.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            console.log(test2);
+            var test3 = test.oData;
+            console.log(test3);
+
+            
 
             var oModel = this.getView().getModel(oModel, "objectView");
+            var oModel2 = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
             // var path = oModel.getPath();
             console.log(oModel);
+            
+
             var aEntries = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
             console.log(aEntries);
-            var SelectedValue = aEntries.SelectedValue;
 
-            // aEntries.SelectedValue = 12;
-            console.log(aEntries);
-            SelectedValue.setData({ SelectedValue: 12 });
+
+            test2.TotalQuan = aEntries.SelectedValue;
+
+            console.log(test2);
+
+            var oEntry = {
+                TotalQuan: aEntries.SelectedValue
+            };
+
+            // oEntry.Carrid = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            // oEntry.Carrname = aEntries.SelectedValue;
+            // oEntry.Currcode = this.getView().byId("currcode").getValue();
+            // oEntry.Url = this.getView().byId("url").getValue();
+
+
+            var oTable = this.getView().byId("productTable");
+            oTable.getModel("/ZEWMIEFSI01STOCKSet");
+            console.log(oTable);
+            oTable.setModel(oModel, "objectView");
+            console.log(oTable);
+            // console.log(test4);
+            // test.update("/ZEWMIEFSI01STOCKSet", oModel, {
+            //     method: "PUT",
+            //     success: function(data) {
+            //         // test2.TotalQuan = aEntries.SelectedValue;
+            //         sap.m.MessageBox.show("success");
+            //         alert("success");
+            //         // return;
+            //     },
+            //     error: function(e) {
+            //         alert("error");
+            //         // return;
+            //     }
+            // });
+
+
+
+
+
+            // var aEntries = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            // // var aEntries = oModel.oData[0];
+            // console.log(aEntries);
+            // var SelectedValue = aEntries.SelectedValue;
+
+            // // aEntries.SelectedValue = 12;
+            // // console.log(aEntries);
+
+            // var test = oModel.getData();
+            // console.log(test);
+
+            // var oData = {
+            //     item: {
+            //         TotalQuan: aEntries.SelectedValue
+            //     }
+            // }
+
+            // // creating new model with selected data
+            // var oModel = new JSONModel(oData);
+
+            // // making the model available for other views
+            // sap.ui.getCore().setModel(oModel);
+            // this.getView().setModel(oModel, "objectView");
+
+
+            // oModel.setData({ SelectedValue: 12 });
             // var test = this.getView().getBindingContext().getObject();
             // console.log(test);
 
@@ -235,7 +306,7 @@ sap.ui.define([
 
 
 
-            oModel.update("ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", oData);
+            // oModel.update("ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", oData);
             // oModel.setRefreshAfterChange(false);
             // oModel.refresh();
         }

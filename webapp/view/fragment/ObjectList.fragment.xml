@@ -41,12 +41,16 @@
         <items>
             <ColumnListItem type="Navigation" vAlign="Middle" press=".onOpenDialog">
                 <cells>
-                    <ObjectIdentifier
+                    <!-- <ObjectIdentifier
+                        title="{NameItem}"
+                        text="{NameContainer} ({Lgtyp})"/> -->
+                        <ObjectIdentifier
                         title="{NameItem}"
                         text="{NameContainer} ({Lgtyp})"/>
                     <!-- <Text text="{Lgnum}" wrapping="false"/> -->
                     <!-- <Text text="{Category}" wrapping="false"/> -->
                     <ObjectNumber
+                        id="itemTotalQuan"
                         number="{
                             path: 'TotalQuan',
                             formatter: '.formatter.numberUnit'}"
