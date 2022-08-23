@@ -22,8 +22,7 @@ sap.ui.define([
                 var selectedObject = e.getSource().getBindingContext().getObject();
                 console.log(selectedObject);
 
-                var capacity = 80;
-                var capacityVal = (selectedObject.TotalQuan * 100) / capacity;
+                var capacityVal = (selectedObject.TotalQuan * 100) / selectedObject.Capacity;
 
                 // creating new data object with selected data
                 var oData = {
@@ -32,8 +31,12 @@ sap.ui.define([
                         Lgnum: selectedObject.Lgnum,
                         TotalQuan: selectedObject.TotalQuan,
                         Unit: selectedObject.Unit,
-                        Capacity: capacity,
-                        CapacityVal: capacityVal
+                        Capacity: selectedObject.Capacity,
+                        CapacityVal: capacityVal,
+                        NameContainer: selectedObject.NameContainer,
+                        Description: selectedObject.Description,
+                        LastRefill: selectedObject.LastRefill,
+                        Items: selectedObject.Items
                     }
                 };
 

@@ -30,6 +30,7 @@ server:
       beforeMiddleware: csp
       configuration:
         service:
+          watch: true
           urlPath: /sap/opu/odata/sap/Z_EWM_REPL_BEER_SRV
           metadataXmlPath: ./webapp/localService/metadata.xml
           mockdataRootPath: ./webapp/localService/data

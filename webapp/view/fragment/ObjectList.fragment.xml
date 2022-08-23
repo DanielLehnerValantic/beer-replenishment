@@ -1,0 +1,81 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+    controllerName="beerreplenishment.controller.ObjectView"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+    <Table
+        id="productTable"
+        items="{
+            path: '/ZEWMIEFSI01STOCKSet',
+            sorter: {
+                path: 'TotalQuan',
+                descending : 'true'
+            }
+        }">
+        <!-- <headerToolbar>
+            <Toolbar>
+                <SearchField width="25%" search=".onSearchProduct"/>   
+            </Toolbar>
+        </headerToolbar> -->
+        <columns>
+            <Column width="5%">
+                <!-- <Text text="Product" /> -->
+            </Column>
+            <Column width="30%">
+                <Text text="Product" />
+            </Column>
+            <Column>
+                <Text text="Available" />
+            </Column>
+            <Column width="30%">
+                <Text text="Select Quantity" />
+            </Column>
+            <Column width="15%">
+                <Text text="Rating" />
+            </Column>
+
+        </columns>
+        <items>
+            <ColumnListItem type="Navigation" vAlign="Middle" press=".onOpenDialog">
+                <cells>
+                    <Image src="/img/drink/{Name}.jpg" height="70px" class="" />
+                    <ObjectIdentifier
+                    title="{NameItem}"
+                    text="{NameContainer} ({Lgtyp})"/>
+                    <!-- <Text text="{Lgnum}" wrapping="false"/> -->
+                    <!-- <Text text="{Category}" wrapping="false"/> -->
+                    <!-- <ObjectNumber
+                        id="itemTotalQuan"
+                        number="{
+                            path: 'TotalQuan',
+                            formatter: '.formatter.numberUnit'}"
+                        unit="{Unit}"
+                        state="{
+                            path: 'TotalQuan',
+                            formatter: '.formatter.quantityState'}"
+                    /> -->
+                    <ObjectNumber
+                        id="itemTotalQuan"
+                        number="{TotalQuan}"
+                        unit="{Unit}"
+                        state="{
+                            path: 'TotalQuan',
+                            formatter: '.formatter.quantityState'}"
+                    />
+                    <StepInput
+                        id="stepInput"
+                        value="{SelectedValue}"
+                        change="onChangeStepInput"
+                        textAlign="Center"
+                        min="0"
+                        max="{path: 'TotalQuan', formatter: '.formatter.numberUnitInt'}"
+                        required="true"
+                        description="PC"
+                        width="150px" />
+                        <!-- <Text text="{Lgnum}" wrapping="false"/> -->
+                    <RatingIndicator maxValue="5" value="{Rating}" tooltip="Rate '{NameItem}' now"/>
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>
