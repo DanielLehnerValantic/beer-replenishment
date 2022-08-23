@@ -21,7 +21,7 @@
             <Column width="5%">
                 <!-- <Text text="Product" /> -->
             </Column>
-            <Column width="35%">
+            <Column width="30%">
                 <Text text="Product" />
             </Column>
             <Column>
@@ -57,7 +57,6 @@
                     <ObjectNumber
                         id="itemTotalQuan"
                         number="{TotalQuan}"
-                        inverted="true"
                         unit="{Unit}"
                         state="{
                             path: 'TotalQuan',
@@ -65,7 +64,7 @@
                     />
                     <StepInput
                         id="stepInput"
-                        value="0"
+                        value="{SelectedValue}"
                         change="onChangeStepInput"
                         textAlign="Center"
                         min="0"

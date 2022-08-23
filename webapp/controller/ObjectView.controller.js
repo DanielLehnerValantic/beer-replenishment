@@ -41,24 +41,24 @@ sap.ui.define([
             this.getView().setModel(oModel, "view");
             console.log(oModel);
 
-            var test = oModel.getData();
-            var test2 = test.item.Items;
-            console.log(test2);
-            var sum = 0;
-            console.log(test2[0].TotalQuan);
+            // var test = oModel.getData();
+            // var test2 = test.item.Items;
+            // console.log(test2);
+            // var sum = 0;
+            // console.log(test2[0].TotalQuan);
 
-            for (var i = 0; i < test2.length; i++) {
-                sum = sum + test2[i].TotalQuan;
-                // console.log(test2[i].TotalQuan);
-            }
-            console.log(sum);
+            // for (var i = 0; i < test2.length; i++) {
+            //     sum = sum + test2[i].TotalQuan;
+            //     // console.log(test2[i].TotalQuan);
+            // }
+            // console.log(sum);
 
-            var oDataLocal = {
-                item: {
-                    Capacity: sum,
+            // var oDataLocal = {
+            //     item: {
+            //         Capacity: sum,
 
-                }
-            }
+            //     }
+            // }
         },
 
         onOpenDialog: function(e) {
@@ -116,6 +116,11 @@ sap.ui.define([
 		},
 
         onChangeStepInput: function(e) {
+            // show footer
+            // var oObjectPageLayout = this.byId("ObjectPageLayout");
+			// oObjectPageLayout.setShowFooter();
+
+            // get stepinput value
             var valueStepInput = e.getSource().getValue();
             console.log(valueStepInput);
 
@@ -125,47 +130,108 @@ sap.ui.define([
 
             obj.SelectedValue = valueStepInput;
             
-            console.log(obj);
+            // console.log(obj);
         },
 
         onSave: function(e) {
 
-            var oModel = this.getView().getModel(oModel, "/ZEWMIEFSI01STOCKSet");
-            console.log(oModel);
-            var oData = oModel.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            console.log(oData);
+            // var oModel = sap.ui.getCore().getModel(oModel);
+            // this.getView().setModel(oModel, "view");
 
-            var testData = {
-                TotalQuan: oData.SelectedValue
-            }
-            console.log(testData);
+            var oModel2 = sap.ui.getCore().getModel(oModel2);
+            console.log(oModel2);
+            var oData4 = oModel2.oData;
+            console.log(oData4);
 
-            oData.TotalQuan = testData.TotalQuan;
+            var oModel1 = this.getView().getModel(oModel1, "/ZEWMIEFSI01STOCKSet");
+            var oData1 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            var oData2 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=2,Lgtyp='VAK1')"];
+            var oData3 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=3,Lgtyp='VAK1')"];
+
+            oData1.TotalQuan = oData1.TotalQuan - oData1.SelectedValue;
+            oData2.TotalQuan = oData2.TotalQuan - oData2.SelectedValue;
+            oData3.TotalQuan = oData3.TotalQuan - oData3.SelectedValue;
+            oModel1.updateBindings();
 
 
-            if (oData.SelectedValue !== 0) {
-                oModel.update("/ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", testData, {
-                    method: "PUT",
-                    success: function(data) {
-                        // test2.TotalQuan = aEntries.SelectedValue;
-                        MessageBox.success(
-                            "Successfully removed drink, enjoy!",
-                            {
-                                title: "Successful!",
-                                emphasizedAction: MessageBox.Action.OK
-                            });
-                        // alert("success");
-                    },
-                    error: function(e) {
-                        MessageBox.error("Something went wrong. Please try again.");
-                    }
+            // var oDataTest = {
+            //     item : {
+            //         TotalQuan: oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan
+            //     }
+            // };
+            var totalQuan = oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan;
+            oData4.item.TotalQuan = totalQuan;
+            oData4.item.CapacityVal = (totalQuan * 100) / 80;
+            oData4.item.Items[0].TotalQuan = oData1.TotalQuan;
+            oData4.item.Items[0].TotalQuanPerc = (oData1.TotalQuan * 100) / 80;
+            oData4.item.Items[1].TotalQuan = oData2.TotalQuan;
+            oData4.item.Items[1].TotalQuanPerc = (oData2.TotalQuan * 100) / 80;
+            oData4.item.Items[2].TotalQuan = oData3.TotalQuan;
+            oData4.item.Items[2].TotalQuanPerc = (oData3.TotalQuan * 100) / 80;
+
+            // oData4[item].TotalQuan = 1;
+            oModel2.updateBindings();
+            // this.getView().setModel(oModel2, "view");
+            // this.getView().setModel(oModel2, "view");
+            console.log(oModel2);
+
+            if (oData1.SelectedValue !== 0 || oData2.SelectedValue !== 0 || oData3.SelectedValue !== 0) {
+                oData1.SelectedValue = 0;
+                oData2.SelectedValue = 0;
+                oData3.SelectedValue = 0;
+                oModel1.updateBindings();
+                oModel2.updateBindings();
+                MessageBox.success(
+                    "Successfully removed drink, enjoy!",
+                    {
+                        title: "Successful!",
+                        emphasizedAction: MessageBox.Action.OK
                 });
             } else {
-                MessageBox.error("Please select a Drink first.",
-                {
-                    title: "Error!",
-                });
+                MessageBox.error(
+                    "Please select a Drink first.",
+                    {
+                        title: "Error!",
+                        emphasizedAction: MessageBox.Action.CANCEL
+                    });
             }
+            
+            
+
+
+            // if (oData1.SelectedValue !== 0) {
+            //     oModel1.update("/ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", testData, {
+            //         method: "PUT",
+            //         success: function(data) {
+            //             // oData.selectedValue = 0;
+            //             // oData.TotalQuan = 1;
+            //             // test2.TotalQuan = aEntries.SelectedValue;
+                        
+            //             MessageBox.success(
+            //                 "Successfully removed drink, enjoy!",
+            //                 {
+            //                     title: "Successful!",
+            //                     emphasizedAction: MessageBox.Action.OK
+            //                 });
+            //                 // oModel1.updateBindings();
+            //             // alert("success");
+            //         },
+            //         error: function(e) {
+            //             MessageBox.error("Something went wrong. Please try again.");
+            //         }
+            //     });
+            // } else {
+            //     MessageBox.error(
+            //         "Please select a Drink first.",
+            //         {
+            //             title: "Error!",
+            //             emphasizedAction: MessageBox.Action.CANCEL
+            //         });
+            // }
+        },
+
+        onCancel: function() {
+            
         }
 
         

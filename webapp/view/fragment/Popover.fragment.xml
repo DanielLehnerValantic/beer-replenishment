@@ -13,15 +13,33 @@
                     <Title text="Choose how much pieces you want to take." />
                 </VBox>
             </HBox>
+
+            <HBox class="sapUiSmallMargin" alignItems="Center" alignContent="Center">
+                <VBox class="sapUiTinyMargin" alignItems="End">
+                <ObjectNumber
+                        unit="Available:"
+                        state="{
+                            path: '/item/TotalQuan',
+                            formatter: '.formatter.quantityState'}"
+                    />
+                </VBox>
+                <VBox class="sapUiTinyMargin" alignItems="Start" alignContent="Center">
+                    <ObjectNumber
+                        number="{/item/TotalQuan}"
+                        unit="{/item/Unit}"
+                        state="{
+                            path: '/item/TotalQuan',
+                            formatter: '.formatter.quantityState'}"
+                    />
+                </VBox>
+            </HBox>
             
             <HBox class="sapUiSmallMargin" alignItems="Center" alignContent="Center">
-                <VBox class="sapUiTinyMargin" alignItems="Start">
-                    <Text text="Available:" />
+                <VBox class="sapUiTinyMargin" alignItems="End">
                     <Text text="Alcohol:" />
                     <Text text="Category:" />
                 </VBox>
                 <VBox class="sapUiTinyMargin" alignItems="Start" alignContent="Center">
-                    <Text text="{/item/TotalQuan} {/item/Unit}" />
                     <Text text="{/item/Alcohol} %" />
                     <Text text="{/item/Category}" />
                 </VBox>
@@ -29,7 +47,7 @@
 
             <HBox class="sapUiSmallMargin" alignItems="Center" alignContent="Center">
                 <VBox class="sapUiTinyMargin">
-                    <Image src="/img/drink/{/item/Name}.jpg" width="50px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+                    <Image src="/img/drink/{/item/Name}.jpg" width="35px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
                 </VBox>
                 <VBox class="sapUiTinyMargin">
                     <Text text="Userrating:" />
