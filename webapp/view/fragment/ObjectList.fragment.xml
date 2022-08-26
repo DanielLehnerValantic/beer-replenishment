@@ -8,7 +8,7 @@
         items="{
             path: '/ZEWMIEFSI01STOCKSet',
             sorter: {
-                path: 'TotalQuan',
+                path: 'Quan',
                 descending : 'true'
             }
         }">
@@ -40,7 +40,7 @@
                 <cells>
                     <Image src="/img/drink/{Name}.jpg" height="70px" class="" />
                     <ObjectIdentifier
-                    title="{NameItem}"
+                    title="{Description}"
                     text="{NameContainer} ({Lgtyp})"/>
                     <!-- <Text text="{Lgnum}" wrapping="false"/> -->
                     <!-- <Text text="{Category}" wrapping="false"/> -->
@@ -56,10 +56,10 @@
                     /> -->
                     <ObjectNumber
                         id="itemTotalQuan"
-                        number="{TotalQuan}"
+                        number="{Quan}"
                         unit="{Unit}"
                         state="{
-                            path: 'TotalQuan',
+                            path: 'Quan',
                             formatter: '.formatter.quantityState'}"
                     />
                     <StepInput
@@ -68,7 +68,7 @@
                         change="onChangeStepInput"
                         textAlign="Center"
                         min="0"
-                        max="{path: 'TotalQuan', formatter: '.formatter.numberUnitInt'}"
+                        max="{path: 'Quan', formatter: '.formatter.numberUnitInt'}"
                         required="true"
                         description="PC"
                         width="150px" />

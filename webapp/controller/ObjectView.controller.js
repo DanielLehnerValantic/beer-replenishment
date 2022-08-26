@@ -135,68 +135,11 @@ sap.ui.define([
 
         onSave: function(e) {
 
-            // var oModel = sap.ui.getCore().getModel(oModel);
-            // this.getView().setModel(oModel, "view");
-
-            var oModel2 = sap.ui.getCore().getModel(oModel2);
-            console.log(oModel2);
-            var oData4 = oModel2.oData;
-            console.log(oData4);
-
-            var oModel1 = this.getView().getModel(oModel1, "/ZEWMIEFSI01STOCKSet");
-            var oData1 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            var oData2 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=2,Lgtyp='VAK1')"];
-            var oData3 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=3,Lgtyp='VAK1')"];
-
-            oData1.TotalQuan = oData1.TotalQuan - oData1.SelectedValue;
-            oData2.TotalQuan = oData2.TotalQuan - oData2.SelectedValue;
-            oData3.TotalQuan = oData3.TotalQuan - oData3.SelectedValue;
-            oModel1.updateBindings();
+            var oModel = sap.ui.getCore().getModel(oModel);
+            var test = this.getView().setModel(oModel, "view");
+            this.getView().setModel(oModel, "view");
 
 
-            // var oDataTest = {
-            //     item : {
-            //         TotalQuan: oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan
-            //     }
-            // };
-            var totalQuan = oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan;
-            oData4.item.TotalQuan = totalQuan;
-            oData4.item.CapacityVal = (totalQuan * 100) / 80;
-            oData4.item.Items[0].TotalQuan = oData1.TotalQuan;
-            oData4.item.Items[0].TotalQuanPerc = (oData1.TotalQuan * 100) / 80;
-            oData4.item.Items[1].TotalQuan = oData2.TotalQuan;
-            oData4.item.Items[1].TotalQuanPerc = (oData2.TotalQuan * 100) / 80;
-            oData4.item.Items[2].TotalQuan = oData3.TotalQuan;
-            oData4.item.Items[2].TotalQuanPerc = (oData3.TotalQuan * 100) / 80;
-
-            // oData4[item].TotalQuan = 1;
-            oModel2.updateBindings();
-            // this.getView().setModel(oModel2, "view");
-            // this.getView().setModel(oModel2, "view");
-            console.log(oModel2);
-
-            if (oData1.SelectedValue !== 0 || oData2.SelectedValue !== 0 || oData3.SelectedValue !== 0) {
-                oData1.SelectedValue = 0;
-                oData2.SelectedValue = 0;
-                oData3.SelectedValue = 0;
-                oModel1.updateBindings();
-                oModel2.updateBindings();
-                MessageBox.success(
-                    "Successfully removed drink, enjoy!",
-                    {
-                        title: "Successful!",
-                        emphasizedAction: MessageBox.Action.OK
-                });
-            } else {
-                MessageBox.error(
-                    "Please select a Drink first.",
-                    {
-                        title: "Error!",
-                        emphasizedAction: MessageBox.Action.CANCEL
-                    });
-            }
-            
-            
 
 
             // if (oData1.SelectedValue !== 0) {
@@ -228,6 +171,72 @@ sap.ui.define([
             //             emphasizedAction: MessageBox.Action.CANCEL
             //         });
             // }
+
+            // // var oModel = sap.ui.getCore().getModel(oModel);
+            // // this.getView().setModel(oModel, "view");
+
+            // var oModel2 = sap.ui.getCore().getModel(oModel2);
+            // console.log(oModel2);
+            // var oData4 = oModel2.oData;
+            // console.log(oData4);
+
+            // var oModel1 = this.getView().getModel(oModel1, "/ZEWMIEFSI01STOCKSet");
+            // var oData1 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
+            // var oData2 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=2,Lgtyp='VAK1')"];
+            // var oData3 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=3,Lgtyp='VAK1')"];
+
+            // oData1.TotalQuan = oData1.TotalQuan - oData1.SelectedValue;
+            // oData2.TotalQuan = oData2.TotalQuan - oData2.SelectedValue;
+            // oData3.TotalQuan = oData3.TotalQuan - oData3.SelectedValue;
+            // oModel1.updateBindings();
+
+
+            // // var oDataTest = {
+            // //     item : {
+            // //         TotalQuan: oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan
+            // //     }
+            // // };
+            // var totalQuan = oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan;
+            // oData4.item.TotalQuan = totalQuan;
+            // oData4.item.CapacityVal = (totalQuan * 100) / 80;
+            // oData4.item.Items[0].TotalQuan = oData1.TotalQuan;
+            // oData4.item.Items[0].TotalQuanPerc = (oData1.TotalQuan * 100) / 80;
+            // oData4.item.Items[1].TotalQuan = oData2.TotalQuan;
+            // oData4.item.Items[1].TotalQuanPerc = (oData2.TotalQuan * 100) / 80;
+            // oData4.item.Items[2].TotalQuan = oData3.TotalQuan;
+            // oData4.item.Items[2].TotalQuanPerc = (oData3.TotalQuan * 100) / 80;
+
+            // // oData4[item].TotalQuan = 1;
+            // oModel2.updateBindings();
+            // // this.getView().setModel(oModel2, "view");
+            // // this.getView().setModel(oModel2, "view");
+            // console.log(oModel2);
+
+            // if (oData1.SelectedValue !== 0 || oData2.SelectedValue !== 0 || oData3.SelectedValue !== 0) {
+            //     oData1.SelectedValue = 0;
+            //     oData2.SelectedValue = 0;
+            //     oData3.SelectedValue = 0;
+            //     oModel1.updateBindings();
+            //     oModel2.updateBindings();
+            //     MessageBox.success(
+            //         "Successfully removed drink, enjoy!",
+            //         {
+            //             title: "Successful!",
+            //             emphasizedAction: MessageBox.Action.OK
+            //     });
+            // } else {
+            //     MessageBox.error(
+            //         "Please select a Drink first.",
+            //         {
+            //             title: "Error!",
+            //             emphasizedAction: MessageBox.Action.CANCEL
+            //         });
+            // }
+            
+            
+
+
+            
         },
 
         onCancel: function() {
