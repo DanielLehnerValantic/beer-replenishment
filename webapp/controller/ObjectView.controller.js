@@ -35,30 +35,39 @@ sap.ui.define([
             // activate filter for selected item
             oBinding.filter(aFilter);
 
-
             // get selected model
             var oModel = sap.ui.getCore().getModel(oModel);
             this.getView().setModel(oModel, "view");
-            console.log(oModel);
+            // console.log(oModel); 
 
-            // var test = oModel.getData();
-            // var test2 = test.item.Items;
-            // console.log(test2);
-            // var sum = 0;
-            // console.log(test2[0].TotalQuan);
 
-            // for (var i = 0; i < test2.length; i++) {
-            //     sum = sum + test2[i].TotalQuan;
-            //     // console.log(test2[i].TotalQuan);
-            // }
-            // console.log(sum);
 
-            // var oDataLocal = {
-            //     item: {
-            //         Capacity: sum,
+            // TESTING
+            console.log(oBinding);
+            var oTable  = this.getView().byId("productTable");
+            console.log(oTable);
+            var items = oTable.getSelectedItems();
+            console.log(items);
+            var sPath = oTable.getBindingPath("items");
+            console.log(sPath);
 
-            //     }
-            // }
+            var test123 = oBinding.getModel();
+            console.log(test123);
+
+            var oModelObject = test123.getProperty("/ZEWMIEFSI01STOCKSet");;
+            console.log(oModelObject);
+
+
+            var test2 = oList.getModel();
+            console.log(test2);
+
+            // oDataModel.getProperty("/EntitySet");
+
+            // making the model available for other views
+            // sap.ui.getCore().setModel(oModelContainer);
+
+            var test = sap.ui.getCore().getModel();
+            console.log(test);
         },
 
         onOpenDialog: function(e) {
@@ -66,36 +75,36 @@ sap.ui.define([
             var selectedObject = e.getSource().getBindingContext().getObject();
             console.log(selectedObject);
 
-            var oData = {
-                item: {
-                    ID: selectedObject.ID,
-                    Lgtyp: selectedObject.Lgtyp,
-                    // Lgnum: selectedObject.Lgnum,
-                    TotalQuan: selectedObject.TotalQuan,
-                    Unit: selectedObject.Unit,
-                    // Matid: selectedObject.Matid,
-                    // Mandt: selectedObject.Mandt,
-                    SelectedValue: selectedObject.SelectedValue,
-                    // Items: selectedObject.Items,
-                    NameItem: selectedObject.NameItem,
-                    Name: selectedObject.Name,
-                    Rating: selectedObject.Rating,
-                    Description: selectedObject.Description,
-                    Alcohol: selectedObject.Alcohol,
-                    Category: selectedObject.Category,
-                    NameContainer: selectedObject.NameContainer,
-                    UnitsOnOrder: selectedObject.UnitsOnOrder,
-                    LastRefill: selectedObject.LastRefill
-                }
-            };
+            // var oData = {
+            //     item: {
+            //         ID: selectedObject.ID,
+            //         Lgtyp: selectedObject.Lgtyp,
+            //         // Lgnum: selectedObject.Lgnum,
+            //         TotalQuan: selectedObject.TotalQuan,
+            //         Unit: selectedObject.Unit,
+            //         // Matid: selectedObject.Matid,
+            //         // Mandt: selectedObject.Mandt,
+            //         SelectedValue: selectedObject.SelectedValue,
+            //         // Items: selectedObject.Items,
+            //         NameItem: selectedObject.NameItem,
+            //         Name: selectedObject.Name,
+            //         Rating: selectedObject.Rating,
+            //         Description: selectedObject.Description,
+            //         Alcohol: selectedObject.Alcohol,
+            //         Category: selectedObject.Category,
+            //         NameContainer: selectedObject.NameContainer,
+            //         UnitsOnOrder: selectedObject.UnitsOnOrder,
+            //         LastRefill: selectedObject.LastRefill
+            //     }
+            // };
 
-            console.log(oData);
-            // creating new model with selected data
-            var oModel = new JSONModel(oData);
+            // console.log(oData);
+            // // creating new model with selected data
+            // var oModel = new JSONModel(oData);
 
-            // making the model available for other views
-            sap.ui.getCore().setModel(oModel);
-            this.getView().setModel(oModel, "objectView");
+            // // making the model available for other views
+            // sap.ui.getCore().setModel(oModel);
+            // this.getView().setModel(oModel, "objectView");
             
             // load and open fragment
             Fragment.load({
@@ -122,22 +131,72 @@ sap.ui.define([
 
             // get stepinput value
             var valueStepInput = e.getSource().getValue();
-            console.log(valueStepInput);
 
-            var oModel = this.getModel();
-            var path = e.getSource().getBindingContext().getPath();
-            var obj = oModel.getProperty(path);
+            // selected item data
+            var selectedObject = e.getSource().getBindingContext().getObject();
+            console.log(selectedObject);
 
-            obj.SelectedValue = valueStepInput;
-            
-            // console.log(obj);
+            var oDataItem = {
+                Mandt: selectedObject.Mandt,
+                Matnr: selectedObject.Matnr,
+                Quan: selectedObject.Quan,
+                Description: selectedObject.Description,
+                Lgnum: selectedObject.Lgnum,
+                Lgtyp: selectedObject.Lgtyp,
+                Lastrefill: selectedObject.Lastrefill,
+                Matid: selectedObject.Matid,
+                Openreplenishment: selectedObject.Openreplenishment,
+                Unit: selectedObject.Unit,
+                SelectedValue: valueStepInput
+            };
+
+            console.log(oDataItem);
+            // creating new model with selected data
+            var oModelItem = new JSONModel(oDataItem);
+            // making the model available for other views
+            sap.ui.getCore().setModel(oModelItem);
+            // this.getView().setModel(oModel, "objectView");
         },
 
         onSave: function(e) {
+            var oModel = sap.ui.getCore().getModel();
+            var oDataModel = oModel.oData;
+            
+            console.log(oModel);
+            console.log(oDataModel);
 
-            var oModel = sap.ui.getCore().getModel(oModel);
-            var test = this.getView().setModel(oModel, "view");
-            this.getView().setModel(oModel, "view");
+            var oUrlParams = {
+                FromWhNr: oDataModel.Lgnum,
+                FromStorType: oDataModel.Lgtyp,
+                MaterialID: oDataModel.Matid,
+                Quantity: oDataModel.SelectedValue,
+                UoM: oDataModel.Unit
+            }
+
+            console.log(oUrlParams);
+
+            var oModel1 = this.getOwnerComponent().getModel();
+            console.log(oModel1);
+            // oModel1.callFunction("/ConsumeDrinks", {
+            //     method: "POST",
+            //     urlParameters: oUrlParams,
+            //     success: fnS,
+            //     error: fnE
+            // });
+            // function fnS (oData, response) {
+            //     console.log(response);
+            //     MessageBox.success(
+            //         "Successfully removed drink, enjoy!",
+            //         {
+            //             title: "Successful!",
+            //             emphasizedAction: MessageBox.Action.OK
+            //     });
+            // };
+            // function fnE (oError) {
+            //     MessageBox.error("Something went wrong. Please try again."+oError.message);
+            // };
+            
+        
 
 
 

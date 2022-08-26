@@ -25,28 +25,28 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="Fridge: {view>/item/NameContainer}" wrapping="true" class="sapUiSmallMarginEnd" />
+					<m:Title text="Fridge: {view>/Lgtyp}" wrapping="true" class="sapUiSmallMarginEnd" />
 				</expandedHeading>
 
 				<snappedHeading>
                     
 					<m:HBox>
                         <m:VBox>
-                            <m:Image src="/img/fridge/fridge_{view>/item/Lgtyp}.jpg" width="75px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
+                            <m:Image src="/img/fridge/fridge_{view>/Lgtyp}.jpg" width="75px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" />
                         </m:VBox>
                         <m:VBox>
-                            <m:Title text="Fridge: {view>/item/NameContainer}" wrapping="true"/>
-                            <m:Label text="{view>/item/Description}" />
+                            <m:Title text="Fridge: {view>/Lgtyp}" wrapping="true"/>
+                            <m:Label text="{view>/Lgnum}" />
                         </m:VBox>
 					</m:HBox>
 				</snappedHeading>
 
 				<expandedContent>
-					<m:Label text="{view>/item/Description}"/>
+					<m:Label text="{view>/Lgnum}"/>
 				</expandedContent>
 
 				<snappedTitleOnMobile>
-					<m:Title text="Fridge: {view>/item/NameContainer}"/>
+					<m:Title text="Fridge: {view>/Lgtyp}"/>
 				</snappedTitleOnMobile>
 
 			</ObjectPageDynamicHeaderTitle>
@@ -56,45 +56,34 @@
 			<m:FlexBox wrap="Wrap" fitContainer="true">
                 <!-- <m:Image src="/img/fridge/fridge_{view>/item/Lgtyp}.jpg" width="150px" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" /> -->
                 <l:HorizontalLayout class="sapUiSmallMarginBeginEnd">
-                    <m:Image src="/img/fridge/fridge_{view>/item/Lgtyp}.jpg" width="150px" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
+                    <m:Image src="/img/fridge/fridge_{view>/Lgtyp}.jpg" width="150px" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" />
                     <l:VerticalLayout class="sapUiSmallMarginBegin" width="150px">
                         
-                        <m:ObjectStatus title="Last Refill"/>
-                        <m:Text text="{view>/item/LastRefill}"/>
-                        <!-- <m:ObjectStatus title="Augustiner"/> -->
-                        <!-- <m:Text text="Fridge {view>/item/Lgtyp} in the kitchen." class="sapUiMediumMarginTop" /> -->
-                        <m:Label class="sapUiSmallMarginTop" text="Capacity {view>/item/Lgtyp}" />
+                        <!-- <m:ObjectStatus title="Last Refill"/>
+                        <m:Text text="{view>/LastRefill}"/> -->
+                        <m:Label class="sapUiSmallMarginTop" text="Capacity {view>/Lgtyp}" />
                         
 					    <!-- <m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" /> -->
                         <m:ProgressIndicator
-                            displayValue="{path: 'view>/item/CapacityVal', formatter: '.formatter.numberUnitInt'}%"
-                            percentValue="{path: 'view>/item/CapacityVal', formatter: '.formatter.numberUnitInt'}" 
+                            displayValue="{path: 'view>/CapacityVal', formatter: '.formatter.numberUnitInt'}%"
+                            percentValue="{path: 'view>/CapacityVal', formatter: '.formatter.numberUnitInt'}" 
                             state="Warning"
                             width="125px"
                         />
                         <m:Text
                             text="{
-                                    path: 'view>/item/TotalQuan',
+                                    path: 'view>/TotalQuan',
                                     formatter: '.formatter.numberUnitInt'
                                 }
                                  of 
                                 {
-                                    path: 'view>/item/Capacity',
+                                    path: 'view>/Capacity',
                                     formatter: '.formatter.numberUnitInt'
                                 }"
                         />
                     </l:VerticalLayout>
 
-                    <!-- <l:VerticalLayout>
-                        <m:ObjectStatus text="In Stock:" state="Success"/>
-                        <m:ObjectStatus text="In Stock:" state="Warning"/>
-                        <m:ObjectStatus text="Out of stock:" state="Error"/>
-                    </l:VerticalLayout> -->
-
                     <l:VerticalLayout class="sapUiTinyMarginBeginEnd">
-                        <!-- <m:ObjectStatus text="{view>/item/Items/0/TotalQuan}" state="Success"/>
-                        <m:ObjectStatus text="{view>/item/Items/1/TotalQuan}" state="Warning"/>
-                        <m:ObjectStatus text="{view>/item/Items/2/TotalQuan}" state="Error"/> -->
                         <m:FlexBox width="25rem" height="10rem" alignItems="Start" justifyContent="SpaceBetween">
                             <m:items>
                                 <microChart:InteractiveDonutChart selectionChanged="onSelectionChanged" selectionEnabled="true">
@@ -110,14 +99,6 @@
                 </l:HorizontalLayout>
                 
 			</m:FlexBox>
-
-            <!-- <m:FlexBox wrap="Wrap" fitContainer="true">
-
-                <m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
-					<m:Label text="Capacity"/>
-					<m:ProgressIndicator displayValue="42%" percentValue="42%"  state="Information" width="125px" />
-				</m:VBox>
-			</m:FlexBox> -->
 		</headerContent>
 
         <sections>
@@ -132,7 +113,7 @@
 				</subSections>
 			</ObjectPageSection>
 
-            <ObjectPageSection titleUppercase="false" title="Drinks in fridge ({view>/item/TotalQuan})">
+            <ObjectPageSection titleUppercase="false" title="Drinks in fridge ({view>/TotalQuan})">
 				<subSections>
 					<ObjectPageSubSection titleUppercase="false">
 						<blocks>

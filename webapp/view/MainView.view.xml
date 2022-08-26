@@ -32,8 +32,8 @@
 		<items>
 			<ColumnListItem vAlign="Middle" type="Navigation" press=".onPress">
 				<cells>
-					<Text text="{NameContainer}" wrapping="false" />
-					<Text text="{Description}" wrapping="false"/>
+					<Text text="{Lgnum}" wrapping="false" />
+					<Text text="{Lgtyp}" wrapping="false"/>
                     <ObjectNumber number="{path: 'TotalQuan', formatter: '.formatter.numberUnit'}" unit="{Unit}" />
 				</cells>
 			</ColumnListItem>

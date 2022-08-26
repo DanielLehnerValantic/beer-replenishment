@@ -30,15 +30,15 @@
             <Column width="30%">
                 <Text text="Select Quantity" />
             </Column>
-            <Column width="15%">
+            <!-- <Column width="15%">
                 <Text text="Rating" />
-            </Column>
+            </Column> -->
 
         </columns>
         <items>
-            <ColumnListItem type="Navigation" vAlign="Middle" press=".onOpenDialog">
+            <ColumnListItem vAlign="Middle">
                 <cells>
-                    <Image src="/img/drink/{Name}.jpg" height="70px" class="" />
+                    <Image src="/img/drink/{Matid}.jpg" height="70px" class="" />
                     <ObjectIdentifier
                     title="{Description}"
                     text="{NameContainer} ({Lgtyp})"/>
@@ -73,7 +73,7 @@
                         description="PC"
                         width="150px" />
                         <!-- <Text text="{Lgnum}" wrapping="false"/> -->
-                    <RatingIndicator maxValue="5" value="{Rating}" tooltip="Rate '{NameItem}' now"/>
+                    <!-- <RatingIndicator maxValue="5" value="{Rating}" tooltip="Rate '{NameItem}' now"/> -->
                 </cells>
             </ColumnListItem>
         </items>
