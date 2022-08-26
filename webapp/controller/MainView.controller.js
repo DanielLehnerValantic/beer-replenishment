@@ -22,31 +22,27 @@ sap.ui.define([
                 var selectedObject = e.getSource().getBindingContext().getObject();
                 console.log(selectedObject);
 
-                var capacityVal = (selectedObject.TotalQuan * 100) / selectedObject.Capacity;
+                var capacity = 80;
+                var quantity = parseFloat(selectedObject.TotalQuan).toFixed(0);
+                var capacityVal = (quantity * 100) / capacity;
 
                 // creating new data object with selected data
-                var oData = {
-                    item : {
-                        Lgtyp: selectedObject.Lgtyp,
-                        Lgnum: selectedObject.Lgnum,
-                        TotalQuan: selectedObject.TotalQuan,
-                        Unit: selectedObject.Unit,
-                        Capacity: selectedObject.Capacity,
-                        CapacityVal: capacityVal,
-                        NameContainer: selectedObject.NameContainer,
-                        Description: selectedObject.Description,
-                        LastRefill: selectedObject.LastRefill,
-                        Items: selectedObject.Items
-                    }
+                var oDataContainer = {
+                    Lgtyp: selectedObject.Lgtyp,
+                    Lgnum: selectedObject.Lgnum,
+                    TotalQuan: quantity,
+                    Unit: selectedObject.Unit,
+                    Capacity: capacity,
+                    CapacityVal: capacityVal
                 };
 
-                console.log(oData);
+                console.log(oDataContainer);
 
                 // creating new model with selected data
-                var oModel = new JSONModel(oData);
+                var oModelContainer = new JSONModel(oDataContainer);
 
                 // making the model available for other views
-                sap.ui.getCore().setModel(oModel);
+                sap.ui.getCore().setModel(oModelContainer);
 
                 this.getRouter().navTo("ObjectView", {
                     "Lgtyp": selectedObject.Lgtyp
