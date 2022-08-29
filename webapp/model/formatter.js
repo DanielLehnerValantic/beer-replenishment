@@ -32,7 +32,7 @@ sap.ui.define([
             if (!sValue) {
                 return "";
             }
-            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "YYYY/MM/DD" });
+            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "yyyy-MM-ddTHH:mm:ss" });
             return dateFormat.format(sValue);
         },
 

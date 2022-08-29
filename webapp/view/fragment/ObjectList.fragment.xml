@@ -72,6 +72,7 @@
                         description="PC"
                         width="150px" />
                     <!-- <Text text="{path: 'Lastrefill', formatter: '.formatter.dateFormatter'}" /> -->
+                    <!-- <Text text="{Lastrefill}" /> -->
                 </cells>
             </ColumnListItem>
         </items>

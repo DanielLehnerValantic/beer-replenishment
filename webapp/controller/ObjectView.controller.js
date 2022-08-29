@@ -150,7 +150,7 @@ sap.ui.define([
         onSave: function(e) {
             sap.ui.core.BusyIndicator.show();
 
-            var oModelView = this.getView().getModel();
+            // var oModelView = this.getView().getModel();
             var oModel = sap.ui.getCore().getModel();
             // var oModel = this.getOwnerComponent().getModel();
             var oDataModel = oModel.oData;
@@ -180,7 +180,10 @@ sap.ui.define([
             function fnS (oData, response) {
                 console.log(response);
                 sap.ui.core.BusyIndicator.hide();
-                oModel1.refresh();
+
+                oModel1.refresh(true);
+                oModel1.updateBindings(true);
+                
                 MessageBox.success(
                     "Successfully removed drink, enjoy!",
                     {
