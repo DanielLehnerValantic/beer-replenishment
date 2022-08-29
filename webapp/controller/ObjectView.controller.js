@@ -38,9 +38,24 @@ sap.ui.define([
             // get selected model
             var oModel = sap.ui.getCore().getModel(oModel);
             this.getView().setModel(oModel, "view");
-            console.log(oModel);
-            console.log(oList);
-            console.log(oBinding);
+
+
+            // TEST
+            // var oModel1 = this.getView().getModel();
+            // var oModel2 = sap.ui.getCore().getModel();
+            // // var oModel = this.getOwnerComponent().getModel();
+            // var oDataModel1 = oModel1.oData;
+            // var oDataModel2 = oModel2.oData;
+
+            // console.log(oDataModel1);
+            // console.log(oDataModel2);
+            // var test = oDataModel1["ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='CHIEMSEER_HELL')"]
+
+            // console.log(test);
+
+            // var test1 = oModel1.getProperty("ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='CHIEMSEER_HELL')");
+
+            // console.log(test1);
 
         },
 
@@ -134,14 +149,14 @@ sap.ui.define([
 
         onSave: function(e) {
             sap.ui.core.BusyIndicator.show();
+
+            var oModelView = this.getView().getModel();
             var oModel = sap.ui.getCore().getModel();
             // var oModel = this.getOwnerComponent().getModel();
             var oDataModel = oModel.oData;
-            var test = oDataModel.length;
             
             console.log(oModel);
             console.log(oDataModel);
-            console.log(test);
 
             var oUrlParams = {
                 FromWhNr: oDataModel.Lgnum,
@@ -155,6 +170,7 @@ sap.ui.define([
 
             var oModel1 = this.getOwnerComponent().getModel();
             console.log(oModel1);
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oModel1.callFunction("/ConsumeDrinks", {
                 method: "POST",
                 urlParameters: oUrlParams,
@@ -164,19 +180,24 @@ sap.ui.define([
             function fnS (oData, response) {
                 console.log(response);
                 sap.ui.core.BusyIndicator.hide();
+                oModel1.refresh();
                 MessageBox.success(
                     "Successfully removed drink, enjoy!",
                     {
                         title: "Successful!",
                         emphasizedAction: MessageBox.Action.OK,
                         onClose: function (oAction) {
-                            this.getRouter().navTo("MainView");
+                            oRouter.navTo("RouteMainView");
                         }
                 });
             };
             function fnE (oError) {
                 sap.ui.core.BusyIndicator.hide();
-                MessageBox.error("Something went wrong. Please try again."+oError.message);
+                MessageBox.error("Something went wrong. Please try again. "+oError.message, {
+                    onClose: function (oAction) {
+                        
+                    }
+                });
             };
 
             
