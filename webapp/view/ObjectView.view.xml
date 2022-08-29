@@ -83,7 +83,7 @@
                         />
                     </l:VerticalLayout>
 
-                    <l:VerticalLayout class="sapUiTinyMarginBeginEnd">
+                    <!-- <l:VerticalLayout class="sapUiTinyMarginBeginEnd">
                         <m:FlexBox width="25rem" height="10rem" alignItems="Start" justifyContent="SpaceBetween">
                             <m:items>
                                 <microChart:InteractiveDonutChart selectionChanged="onSelectionChanged" selectionEnabled="true">
@@ -95,7 +95,7 @@
                                 </microChart:InteractiveDonutChart>
                             </m:items>
                         </m:FlexBox>
-                    </l:VerticalLayout>
+                    </l:VerticalLayout> -->
                 </l:HorizontalLayout>
                 
 			</m:FlexBox>

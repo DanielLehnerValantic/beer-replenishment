@@ -19,7 +19,7 @@
         </headerToolbar> -->
         <columns>
             <Column width="5%">
-                <!-- <Text text="Product" /> -->
+            
             </Column>
             <Column width="30%">
                 <Text text="Product" />
@@ -27,12 +27,15 @@
             <Column>
                 <Text text="Available" />
             </Column>
+            <Column>
+                <Text text="Open Replenishment" />
+            </Column>
             <Column width="30%">
                 <Text text="Select Quantity" />
             </Column>
-            <!-- <Column width="15%">
-                <Text text="Rating" />
-            </Column> -->
+            <Column>
+                <Text text="Last Refill" />
+            </Column>
 
         </columns>
         <items>
@@ -41,19 +44,7 @@
                     <Image src="/img/drink/{Matid}.jpg" height="70px" class="" />
                     <ObjectIdentifier
                     title="{Description}"
-                    text="{NameContainer} ({Lgtyp})"/>
-                    <!-- <Text text="{Lgnum}" wrapping="false"/> -->
-                    <!-- <Text text="{Category}" wrapping="false"/> -->
-                    <!-- <ObjectNumber
-                        id="itemTotalQuan"
-                        number="{
-                            path: 'TotalQuan',
-                            formatter: '.formatter.numberUnit'}"
-                        unit="{Unit}"
-                        state="{
-                            path: 'TotalQuan',
-                            formatter: '.formatter.quantityState'}"
-                    /> -->
+                    text="{Lgtyp} ({Lgnum})"/>
                     <ObjectNumber
                         id="itemTotalQuan"
                         number="{Quan}"
@@ -61,6 +52,14 @@
                         state="{
                             path: 'Quan',
                             formatter: '.formatter.quantityState'}"
+                    />
+                    <ObjectNumber
+                        id="itemOpenRepl"
+                        number="{
+                            path: 'Openreplenishment',
+                            formatter: '.formatter.numberUnit'}"
+                        unit="{Unit}"
+                        state="Success"
                     />
                     <StepInput
                         id="stepInput"
@@ -72,8 +71,7 @@
                         required="true"
                         description="PC"
                         width="150px" />
-                        <!-- <Text text="{Lgnum}" wrapping="false"/> -->
-                    <!-- <RatingIndicator maxValue="5" value="{Rating}" tooltip="Rate '{NameItem}' now"/> -->
+                    <!-- <Text text="{path: 'Lastrefill', formatter: '.formatter.dateFormatter'}" /> -->
                 </cells>
             </ColumnListItem>
         </items>

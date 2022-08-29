@@ -14,19 +14,27 @@ sap.ui.define([
 		 * @param {string} sValue the number string to be rounded
 		 * @returns {string} sValue with 2 digits rounded
 		 */
-		numberUnit : function (sValue) {
+		numberUnit: function (sValue) {
 			if (!sValue) {
 				return "";
 			}
 			return parseFloat(sValue).toFixed(0);
 		},
 
-        numberUnitInt : function (sValue) {
+        numberUnitInt: function (sValue) {
 			if (!sValue) {
 				return "";
 			}
 			return parseFloat(sValue);
 		},
+
+        dateFormatter: function (sValue) {
+            if (!sValue) {
+                return "";
+            }
+            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "YYYY/MM/DD" });
+            return dateFormat.format(sValue);
+        },
 
 
 		/**

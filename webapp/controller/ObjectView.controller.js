@@ -38,36 +38,10 @@ sap.ui.define([
             // get selected model
             var oModel = sap.ui.getCore().getModel(oModel);
             this.getView().setModel(oModel, "view");
-            // console.log(oModel); 
-
-
-
-            // TESTING
+            console.log(oModel);
+            console.log(oList);
             console.log(oBinding);
-            var oTable  = this.getView().byId("productTable");
-            console.log(oTable);
-            var items = oTable.getSelectedItems();
-            console.log(items);
-            var sPath = oTable.getBindingPath("items");
-            console.log(sPath);
 
-            var test123 = oBinding.getModel();
-            console.log(test123);
-
-            var oModelObject = test123.getProperty("/ZEWMIEFSI01STOCKSet");;
-            console.log(oModelObject);
-
-
-            var test2 = oList.getModel();
-            console.log(test2);
-
-            // oDataModel.getProperty("/EntitySet");
-
-            // making the model available for other views
-            // sap.ui.getCore().setModel(oModelContainer);
-
-            var test = sap.ui.getCore().getModel();
-            console.log(test);
         },
 
         onOpenDialog: function(e) {
@@ -159,11 +133,15 @@ sap.ui.define([
         },
 
         onSave: function(e) {
+            sap.ui.core.BusyIndicator.show();
             var oModel = sap.ui.getCore().getModel();
+            // var oModel = this.getOwnerComponent().getModel();
             var oDataModel = oModel.oData;
+            var test = oDataModel.length;
             
             console.log(oModel);
             console.log(oDataModel);
+            console.log(test);
 
             var oUrlParams = {
                 FromWhNr: oDataModel.Lgnum,
@@ -177,123 +155,29 @@ sap.ui.define([
 
             var oModel1 = this.getOwnerComponent().getModel();
             console.log(oModel1);
-            // oModel1.callFunction("/ConsumeDrinks", {
-            //     method: "POST",
-            //     urlParameters: oUrlParams,
-            //     success: fnS,
-            //     error: fnE
-            // });
-            // function fnS (oData, response) {
-            //     console.log(response);
-            //     MessageBox.success(
-            //         "Successfully removed drink, enjoy!",
-            //         {
-            //             title: "Successful!",
-            //             emphasizedAction: MessageBox.Action.OK
-            //     });
-            // };
-            // function fnE (oError) {
-            //     MessageBox.error("Something went wrong. Please try again."+oError.message);
-            // };
-            
-        
-
-
-
-
-            // if (oData1.SelectedValue !== 0) {
-            //     oModel1.update("/ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')", testData, {
-            //         method: "PUT",
-            //         success: function(data) {
-            //             // oData.selectedValue = 0;
-            //             // oData.TotalQuan = 1;
-            //             // test2.TotalQuan = aEntries.SelectedValue;
-                        
-            //             MessageBox.success(
-            //                 "Successfully removed drink, enjoy!",
-            //                 {
-            //                     title: "Successful!",
-            //                     emphasizedAction: MessageBox.Action.OK
-            //                 });
-            //                 // oModel1.updateBindings();
-            //             // alert("success");
-            //         },
-            //         error: function(e) {
-            //             MessageBox.error("Something went wrong. Please try again.");
-            //         }
-            //     });
-            // } else {
-            //     MessageBox.error(
-            //         "Please select a Drink first.",
-            //         {
-            //             title: "Error!",
-            //             emphasizedAction: MessageBox.Action.CANCEL
-            //         });
-            // }
-
-            // // var oModel = sap.ui.getCore().getModel(oModel);
-            // // this.getView().setModel(oModel, "view");
-
-            // var oModel2 = sap.ui.getCore().getModel(oModel2);
-            // console.log(oModel2);
-            // var oData4 = oModel2.oData;
-            // console.log(oData4);
-
-            // var oModel1 = this.getView().getModel(oModel1, "/ZEWMIEFSI01STOCKSet");
-            // var oData1 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=1,Lgtyp='VAK1')"];
-            // var oData2 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=2,Lgtyp='VAK1')"];
-            // var oData3 = oModel1.oData["ZEWMIEFSI01STOCKSet(ID=3,Lgtyp='VAK1')"];
-
-            // oData1.TotalQuan = oData1.TotalQuan - oData1.SelectedValue;
-            // oData2.TotalQuan = oData2.TotalQuan - oData2.SelectedValue;
-            // oData3.TotalQuan = oData3.TotalQuan - oData3.SelectedValue;
-            // oModel1.updateBindings();
-
-
-            // // var oDataTest = {
-            // //     item : {
-            // //         TotalQuan: oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan
-            // //     }
-            // // };
-            // var totalQuan = oData1.TotalQuan + oData2.TotalQuan + oData3.TotalQuan;
-            // oData4.item.TotalQuan = totalQuan;
-            // oData4.item.CapacityVal = (totalQuan * 100) / 80;
-            // oData4.item.Items[0].TotalQuan = oData1.TotalQuan;
-            // oData4.item.Items[0].TotalQuanPerc = (oData1.TotalQuan * 100) / 80;
-            // oData4.item.Items[1].TotalQuan = oData2.TotalQuan;
-            // oData4.item.Items[1].TotalQuanPerc = (oData2.TotalQuan * 100) / 80;
-            // oData4.item.Items[2].TotalQuan = oData3.TotalQuan;
-            // oData4.item.Items[2].TotalQuanPerc = (oData3.TotalQuan * 100) / 80;
-
-            // // oData4[item].TotalQuan = 1;
-            // oModel2.updateBindings();
-            // // this.getView().setModel(oModel2, "view");
-            // // this.getView().setModel(oModel2, "view");
-            // console.log(oModel2);
-
-            // if (oData1.SelectedValue !== 0 || oData2.SelectedValue !== 0 || oData3.SelectedValue !== 0) {
-            //     oData1.SelectedValue = 0;
-            //     oData2.SelectedValue = 0;
-            //     oData3.SelectedValue = 0;
-            //     oModel1.updateBindings();
-            //     oModel2.updateBindings();
-            //     MessageBox.success(
-            //         "Successfully removed drink, enjoy!",
-            //         {
-            //             title: "Successful!",
-            //             emphasizedAction: MessageBox.Action.OK
-            //     });
-            // } else {
-            //     MessageBox.error(
-            //         "Please select a Drink first.",
-            //         {
-            //             title: "Error!",
-            //             emphasizedAction: MessageBox.Action.CANCEL
-            //         });
-            // }
-            
-            
-
+            oModel1.callFunction("/ConsumeDrinks", {
+                method: "POST",
+                urlParameters: oUrlParams,
+                success: fnS,
+                error: fnE
+            });
+            function fnS (oData, response) {
+                console.log(response);
+                sap.ui.core.BusyIndicator.hide();
+                MessageBox.success(
+                    "Successfully removed drink, enjoy!",
+                    {
+                        title: "Successful!",
+                        emphasizedAction: MessageBox.Action.OK,
+                        onClose: function (oAction) {
+                            this.getRouter().navTo("MainView");
+                        }
+                });
+            };
+            function fnE (oError) {
+                sap.ui.core.BusyIndicator.hide();
+                MessageBox.error("Something went wrong. Please try again."+oError.message);
+            };
 
             
         },

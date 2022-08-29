@@ -22,7 +22,7 @@ sap.ui.define([
                 var selectedObject = e.getSource().getBindingContext().getObject();
                 console.log(selectedObject);
 
-                var capacity = 80;
+                var capacity = 40;
                 var quantity = parseFloat(selectedObject.TotalQuan).toFixed(0);
                 var capacityVal = (quantity * 100) / capacity;
 
