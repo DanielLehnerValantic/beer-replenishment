@@ -21,14 +21,14 @@
             <Column width="5%">
             
             </Column>
-            <Column width="30%">
+            <Column width="20%">
                 <Text text="Product" />
             </Column>
             <Column>
                 <Text text="Available" />
             </Column>
             <Column>
-                <Text text="Open Replenishment" />
+                <Text text="Open" />
             </Column>
             <Column width="30%">
                 <Text text="Select Quantity" />
@@ -41,7 +41,7 @@
         <items>
             <ColumnListItem vAlign="Middle">
                 <cells>
-                    <Image src="/img/drink/{Matid}.jpg" height="70px" class="" />
+                    <Image src="/img/drink/{Matid}.jpg" height="80px" class="" />
                     <ObjectIdentifier
                     title="{Description}"
                     text="{Lgtyp} ({Lgnum})"/>

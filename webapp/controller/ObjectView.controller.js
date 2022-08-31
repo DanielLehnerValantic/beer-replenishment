@@ -170,7 +170,7 @@ sap.ui.define([
 
             var oModel1 = this.getOwnerComponent().getModel();
             console.log(oModel1);
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
             oModel1.callFunction("/ConsumeDrinks", {
                 method: "POST",
                 urlParameters: oUrlParams,
@@ -189,9 +189,9 @@ sap.ui.define([
                     {
                         title: "Successful!",
                         emphasizedAction: MessageBox.Action.OK,
-                        onClose: function (oAction) {
-                            oRouter.navTo("RouteMainView");
-                        }
+                        // onClose: function (oAction) {
+                        //     oRouter.navTo("RouteMainView");
+                        // }
                 });
             };
             function fnE (oError) {
