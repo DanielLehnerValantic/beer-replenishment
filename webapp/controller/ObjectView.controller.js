@@ -46,7 +46,7 @@ sap.ui.define([
             var selectedObject = e.getSource().getBindingContext();
             var sPath = selectedObject.getPath();
             var oModelItem = this.getView().getModel().getProperty(sPath);
-            oModelItem.SelectedValue = valueStepInput;
+            oModelItem.SelectedValue = valueStepInput.toString();
 
             console.log(oModelItem);
 
@@ -58,6 +58,7 @@ sap.ui.define([
 
         onSave: function(e) {
             var oModel = this.getOwnerComponent().getModel();
+            console.log(oModel);
             var oModelFridge = sap.ui.getCore().getModel("view").oData;
             var oModelChiem = this.getView().getModel().getProperty("/ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='CHIEMSEER_HELL')");
             var oModelTeger = this.getView().getModel().getProperty("/ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='TEGERNSEER_HELL')");
@@ -69,26 +70,26 @@ sap.ui.define([
                 toPositions: []
             }
 
-            var pos1 = {
+            var chiem = {
                 StorWhNo: oModelChiem.Lgnum,
                 StorBin: "VAK1-01",
                 StorType: oModelChiem.Lgtyp,
                 MatNr: oModelChiem.Matnr,
-                Quantity: "1",
+                Quantity: oModelChiem.SelectedValue,
                 UoM: oModelChiem.Unit
             }
 
-            var pos2 = {
+            var teger = {
                 StorWhNo: oModelTeger.Lgnum,
                 StorBin: "VAK1-01",
                 StorType: oModelTeger.Lgtyp,
                 MatNr: oModelTeger.Matnr,
-                Quantity: "2",
+                Quantity: oModelTeger.SelectedValue,
                 UoM: oModelTeger.Unit
             }
 
-            oUrlParams.toPositions.push(pos1);
-            oUrlParams.toPositions.push(pos2);
+            oUrlParams.toPositions.push(chiem);
+            oUrlParams.toPositions.push(teger);
 
             console.log(oUrlParams);
 

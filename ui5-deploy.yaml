@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+specVersion: "2.5"
+metadata:
+  name: beerreplenishment
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: vs1-201
+          url: http://val-vs1.movento.mannheim:8001
+        credentials:
+          username: env:XYZ_USER
+          password: env:XYZ_PASSWORD
+        app:
+          name: ZEWMbeer_repl
+          description: Fiori App Beer Replenishment
+          package: ZEWM_EDU_FIORI
+          transport: VS1K901935
