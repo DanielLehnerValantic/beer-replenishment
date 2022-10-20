@@ -42,7 +42,7 @@ sap.ui.define([
                 var oModelContainer = new JSONModel(oDataContainer);
 
                 // making the model available for other views
-                sap.ui.getCore().setModel(oModelContainer);
+                sap.ui.getCore().setModel(oModelContainer, "view");
 
                 this.getRouter().navTo("ObjectView", {
                     "Lgtyp": selectedObject.Lgtyp

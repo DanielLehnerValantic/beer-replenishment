@@ -32,157 +32,74 @@ sap.ui.define([
             // filter binding
             var oList = this.getView().byId("productTable");
             var oBinding = oList.getBinding("items");
+
             // activate filter for selected item
             oBinding.filter(aFilter);
 
             // get selected model
-            var oModel = sap.ui.getCore().getModel(oModel);
+            var oModel = sap.ui.getCore().getModel("view");
             this.getView().setModel(oModel, "view");
-
-
-            // TEST
-            // var oModel1 = this.getView().getModel();
-            // var oModel2 = sap.ui.getCore().getModel();
-            // // var oModel = this.getOwnerComponent().getModel();
-            // var oDataModel1 = oModel1.oData;
-            // var oDataModel2 = oModel2.oData;
-
-            // console.log(oDataModel1);
-            // console.log(oDataModel2);
-            // var test = oDataModel1["ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='CHIEMSEER_HELL')"]
-
-            // console.log(test);
-
-            // var test1 = oModel1.getProperty("ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='CHIEMSEER_HELL')");
-
-            // console.log(test1);
-
         },
-
-        onOpenDialog: function(e) {
-            // selected item data
-            var selectedObject = e.getSource().getBindingContext().getObject();
-            console.log(selectedObject);
-
-            // var oData = {
-            //     item: {
-            //         ID: selectedObject.ID,
-            //         Lgtyp: selectedObject.Lgtyp,
-            //         // Lgnum: selectedObject.Lgnum,
-            //         TotalQuan: selectedObject.TotalQuan,
-            //         Unit: selectedObject.Unit,
-            //         // Matid: selectedObject.Matid,
-            //         // Mandt: selectedObject.Mandt,
-            //         SelectedValue: selectedObject.SelectedValue,
-            //         // Items: selectedObject.Items,
-            //         NameItem: selectedObject.NameItem,
-            //         Name: selectedObject.Name,
-            //         Rating: selectedObject.Rating,
-            //         Description: selectedObject.Description,
-            //         Alcohol: selectedObject.Alcohol,
-            //         Category: selectedObject.Category,
-            //         NameContainer: selectedObject.NameContainer,
-            //         UnitsOnOrder: selectedObject.UnitsOnOrder,
-            //         LastRefill: selectedObject.LastRefill
-            //     }
-            // };
-
-            // console.log(oData);
-            // // creating new model with selected data
-            // var oModel = new JSONModel(oData);
-
-            // // making the model available for other views
-            // sap.ui.getCore().setModel(oModel);
-            // this.getView().setModel(oModel, "objectView");
-            
-            // load and open fragment
-            Fragment.load({
-                id: this.getView().getId(),
-                name: "beerreplenishment.view.fragment.Popover",
-                controller: this
-            }).then(function(oDialog) {
-                oDialog.open();
-            });
-        },
-
-        onAfterRendering: function(e) {
-
-        },
-
-        onCancelDialog: function(e) {
-            e.getSource().getParent().destroy();
-		},
 
         onChangeStepInput: function(e) {
-            // show footer
-            // var oObjectPageLayout = this.byId("ObjectPageLayout");
-			// oObjectPageLayout.setShowFooter();
-
-            // get stepinput value
             var valueStepInput = e.getSource().getValue();
+            var selectedObject = e.getSource().getBindingContext();
+            var sPath = selectedObject.getPath();
+            var oModelItem = this.getView().getModel().getProperty(sPath);
+            oModelItem.SelectedValue = valueStepInput;
 
-            // selected item data
-            var selectedObject = e.getSource().getBindingContext().getObject();
-            console.log(selectedObject);
+            console.log(oModelItem);
 
-            var oDataItem = {
-                Mandt: selectedObject.Mandt,
-                Matnr: selectedObject.Matnr,
-                Quan: selectedObject.Quan,
-                Description: selectedObject.Description,
-                Lgnum: selectedObject.Lgnum,
-                Lgtyp: selectedObject.Lgtyp,
-                Lastrefill: selectedObject.Lastrefill,
-                Matid: selectedObject.Matid,
-                Openreplenishment: selectedObject.Openreplenishment,
-                Unit: selectedObject.Unit,
-                SelectedValue: valueStepInput
-            };
+            var test = [];
 
-            console.log(oDataItem);
-            // creating new model with selected data
-            var oModelItem = new JSONModel(oDataItem);
-            // making the model available for other views
-            sap.ui.getCore().setModel(oModelItem);
-            // this.getView().setModel(oModel, "objectView");
+            test.push();
+
         },
 
         onSave: function(e) {
-            sap.ui.core.BusyIndicator.show();
-
-            // var oModelView = this.getView().getModel();
-            var oModel = sap.ui.getCore().getModel();
-            // var oModel = this.getOwnerComponent().getModel();
-            var oDataModel = oModel.oData;
-            
-            console.log(oModel);
-            console.log(oDataModel);
+            var oModel = this.getOwnerComponent().getModel();
+            var oModelFridge = sap.ui.getCore().getModel("view").oData;
+            var oModelChiem = this.getView().getModel().getProperty("/ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='CHIEMSEER_HELL')");
+            var oModelTeger = this.getView().getModel().getProperty("/ZEWMIEFSI01STOCKSet(Lgnum='VA01',Lgtyp='VAK1',Matid='TEGERNSEER_HELL')");
 
             var oUrlParams = {
-                FromWhNr: oDataModel.Lgnum,
-                FromStorType: oDataModel.Lgtyp,
-                MaterialID: oDataModel.Matid,
-                Quantity: oDataModel.SelectedValue,
-                UoM: oDataModel.Unit
+                FromWhNo: oModelFridge.Lgnum,
+                FromStorBin: "VAK1-01",
+                FromStorType: oModelFridge.Lgtyp,
+                toPositions: []
             }
 
-            console.log(oUrlParams);
+            var pos1 = {
+                StorWhNo: oModelChiem.Lgnum,
+                StorBin: "VAK1-01",
+                StorType: oModelChiem.Lgtyp,
+                MatNr: oModelChiem.Matnr,
+                Quantity: "1",
+                UoM: oModelChiem.Unit
+            }
 
-            var oModel1 = this.getOwnerComponent().getModel();
-            console.log(oModel1);
-            // var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oModel1.callFunction("/ConsumeDrinks", {
-                method: "POST",
-                urlParameters: oUrlParams,
-                success: fnS,
-                error: fnE
+            var pos2 = {
+                StorWhNo: oModelTeger.Lgnum,
+                StorBin: "VAK1-01",
+                StorType: oModelTeger.Lgtyp,
+                MatNr: oModelTeger.Matnr,
+                Quantity: "2",
+                UoM: oModelTeger.Unit
+            }
+
+            oUrlParams.toPositions.push(pos1);
+            oUrlParams.toPositions.push(pos2);
+
+            console.log(oUrlParams);
+
+            oModel.create("/LocationSet", oUrlParams, {
+                success: fnS,
+                error: fnE
             });
             function fnS (oData, response) {
                 console.log(response);
-                sap.ui.core.BusyIndicator.hide();
-
-                oModel1.refresh(true);
-                oModel1.updateBindings(true);
+                oModel.refresh(true);
+                oModel.updateBindings(true);
                 
                 MessageBox.success(
                     "Successfully removed drink, enjoy!",
@@ -203,6 +120,7 @@ sap.ui.define([
                 });
             };
 
+            
             
         },
 
