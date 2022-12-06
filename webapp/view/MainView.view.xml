@@ -1,50 +1,99 @@
-
-<mvc:View
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
     controllerName="beerreplenishment.controller.MainView"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-    xmlns:smartList="sap.ui.comp.smartlist"
-	xmlns:semantic="sap.f.semantic">
-    <Table
-		items="{
-			path: '/ZEWMIEFSI01STSet',
-			sorter: {
-				path: 'Lgtyp'
-			}
-		}">
-		<headerToolbar>
-			<OverflowToolbar>
-				<Title text="Fridges Overview" level="H2"/>
-			</OverflowToolbar>
-		</headerToolbar>
-		<columns>
-			<Column>
-				<Text text="Fridge Name" />
-			</Column>
-			<Column>
-				<Text text="Description" />
-			</Column>
-			<Column>
-				<Text text="Total Quantity" />
-			</Column>
+	xmlns:m="sap.m"
+	height="100%">
+    <ObjectPageLayout id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true"
+        isChildPage="true"
+        showEditHeaderButton="true"
+        showFooter="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
 
-		</columns>
-		<items>
-			<ColumnListItem vAlign="Middle" type="Navigation" press=".onPress">
-				<cells>
-					<Text text="{Lgnum}" wrapping="false" />
-					<Text text="{Lgtyp}" wrapping="false"/>
-                    <ObjectNumber number="{path: 'TotalQuan', formatter: '.formatter.numberUnit'}" unit="{Unit}" />
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
-    <!-- <smartList:SmartList id="ItemsST" entitySet="ZEWMIEFSI01STSet" header="Fridges Overview"
-        showRowCount="true" showFullScreenButton="true" enableAutoBinding="true"
-        selectFields="Lgnum,Lgtyp,TotalQuan,Unit">
-        <smartList:listItemTemplate>
-            <StandardListItem title="{Lgnum}" info="{TotalQuan} {Unit}"
-                description="{Lgtyp}" press=".onPress" type="Navigation" />
-        </smartList:listItemTemplate>
-    </smartList:SmartList> -->
+
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+        <sections>
+            <ObjectPageSection titleUppercase="false" title="Drinks in fridge ({view>/TotalQuan})">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                            <m:Table
+                            id="productTable"
+                            items="{
+                                path: '/ZEWMIEFSI01STOCKSet'
+                            }">
+                            <m:columns>
+                                <m:Column width="5%">
+                                </m:Column>
+                                <m:Column width="25%">
+                                    <m:Text text="Product" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="Available" />
+                                </m:Column>
+                                <m:Column>
+                                    <m:Text text="Open" />
+                                </m:Column>
+                                <m:Column width="30%">
+                                    <m:Text text="Select Quantity" />
+                                </m:Column>
+                            </m:columns>
+                            <m:items>
+                                <m:ColumnListItem vAlign="Middle">
+                                    <m:cells>
+                                        <m:Image src="{imageModel>/path}/img/drink/{Matid}.jpg" height="80px" class="" />
+                                        <m:ObjectIdentifier
+                                        title="{Description}"
+                                        text="{Lgtyp} ({Lgnum})"/>
+                                        <m:ObjectNumber
+                                            id="itemTotalQuan"
+                                            number="{Quan}"
+                                            unit="{Unit}"
+                                            state="{
+                                                path: 'Quan',
+                                                formatter: '.formatter.quantityState'}"
+                                        />
+                                        <m:ObjectNumber
+                                            id="itemOpenRepl"
+                                            number="{
+                                                path: 'Openreplenishment',
+                                                formatter: '.formatter.numberUnit'}"
+                                            unit="{Unit}"
+                                            state="Success"
+                                        />
+                                        <m:StepInput
+                                            id="stepInput"
+                                            value="{SelectedValue}"
+                                            change="onChangeStepInput"
+                                            textAlign="Center"
+                                            min="0"
+                                            max="{path: 'Quan', formatter: '.formatter.numberUnitInt'}"
+                                            required="true"
+                                            description="PC"
+                                            width="150px" />
+                                    </m:cells>
+                                </m:ColumnListItem>
+                            </m:items>
+                        </m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+        <footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button type="Accept" text="Save" press="onSave"/>
+				<m:Button type="Reject" text="Cancel" press="onCancel"/>
+			</m:OverflowToolbar>
+		</footer>
+
+	</ObjectPageLayout>
 </mvc:View>
