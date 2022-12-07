@@ -28,11 +28,19 @@ sap.ui.define([
 			return parseFloat(sValue);
 		},
 
-        dateFormatter: function (sValue) {
+        // dateFormatter: function (sValue) {
+        //     if (!sValue) {
+        //         return "";
+        //     }
+        //     var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "yyyy-MM-ddTHH:mm:ss" });
+        //     return dateFormat.format(sValue);
+        // },
+
+		dateFormatter: function (sValue) {
             if (!sValue) {
                 return "";
             }
-            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "yyyy-MM-ddTHH:mm:ss" });
+            var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "yyyy-MM-ddTHH:mm:ss.SSSX" });
             return dateFormat.format(sValue);
         },
 
@@ -47,7 +55,7 @@ sap.ui.define([
 		quantityState: function(iValue) {
 			if (iValue === 0) {
 				return ValueState.Error;
-			} else if (iValue <= 10) {
+			} else if (iValue <= 5) {
 				return ValueState.Warning;
 			} else {
 				return ValueState.Success;
